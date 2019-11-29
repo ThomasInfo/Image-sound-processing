@@ -368,7 +368,7 @@
 // Define 'cimg_display' to: '0' to disable display capabilities.
 //                           '1' to use the X-Window framework (X11).
 //                           '2' to use the Microsoft GDI32 framework.
-#ifndef cimg_display
+/*#ifndef cimg_display
 #if cimg_OS==0
 #define cimg_display 0
 #elif cimg_OS==1
@@ -379,6 +379,10 @@
 #elif !(cimg_display==0 || cimg_display==1 || cimg_display==2)
 #error CImg Library: Configuration variable 'cimg_display' is badly defined.
 #error (should be { 0=none | 1=X-Window (X11) | 2=Microsoft GDI32 }).
+#endif*/
+
+#ifndef cimg_display
+#define cimg_display 0
 #endif
 
 // Include display-specific headers.

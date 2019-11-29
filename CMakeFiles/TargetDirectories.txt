@@ -1,0 +1,3 @@
+/Users/Sofia/Documents/EPFL/MA1/Image-sound-processing/CMakeFiles/rebuild_cache.dir
+/Users/Sofia/Documents/EPFL/MA1/Image-sound-processing/CMakeFiles/edit_cache.dir
+/Users/Sofia/Documents/EPFL/MA1/Image-sound-processing/CMakeFiles/main.dir

@@ -1,13 +1,13 @@
 #include <iostream>
 
+//#include <cstdlib>
 
-#include "libpng-1.6.37/png.h"
-#include "libpng-1.6.37/pnglibconf.h"
+#include "../libraries/libpng-1.6.37/png.h"
+#include "../libraries/libpng-1.6.37/pnglibconf.h"
 
+#define cimg_use_png 1
 
-#define cimg_use_png
-
-#include "CImg.h"
+#include "../libraries/CImg.h"
 
 using namespace cimg_library;
 using namespace std;
@@ -21,6 +21,7 @@ int main() {
     cout << image.height()<< endl;
     cout << image.width() << endl;
     cout << image.spectrum() << endl;
+    cout << image.size() << endl;
 
     /*int* img1 = image.data();
     for(int i=0; i < image.size(); i++) {

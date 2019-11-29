@@ -4,12 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/Sofia/Documents/EPFL/MA1/Image-sound-processing/main.cpp" "/Users/Sofia/Documents/EPFL/MA1/Image-sound-processing/CMakeFiles/main.dir/main.cpp.o"
+  "/Users/Sofia/Documents/EPFL/MA1/Image-sound-processing/src/main.cpp" "/Users/Sofia/Documents/EPFL/MA1/Image-sound-processing/CMakeFiles/main.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/Library/Frameworks/Mono.framework/Headers"
+  "/Users/Sofia/anaconda3/include"
   )
 
 # Targets to which this target links.

@@ -9,6 +9,8 @@ using namespace std;
 
 Reader::Reader() {}
 
+Reader::~Reader () {}
+
 CImg <int> Reader::loadCImg(std::string filename) const {
     int n = filename.length();
     char filenameInChar [n + 1];
@@ -18,7 +20,7 @@ CImg <int> Reader::loadCImg(std::string filename) const {
     return image;
 }
 
-RGB_Image Reader::loadImage(string filename) const {
+Image Reader::loadImage(string filename) const {
     CImg<int> image = loadCImg(filename);
     return convertImage(image);
 }
@@ -38,12 +40,12 @@ Channel Reader::extractGreenChannel (string filename) const {
     return convertChannel(image.get_channel(2));
 }
 
-RGB_Image Reader::convertImage (CImg <int> cImg) const {
+Image Reader::convertImage (CImg <int> cImg) const {
     int lines = cImg.height();
     int columns = cImg.width();
     int channels = cImg.spectrum();
 
-    RGB_Image image (lines, vector<vector<int>>(columns, vector<int>(channels)));
+    Image image (lines, vector<vector<int>>(columns, vector<int>(channels)));
 
     for(size_t i(0); i < lines; i++) {
         for (size_t j(0); j < columns; ++j) {

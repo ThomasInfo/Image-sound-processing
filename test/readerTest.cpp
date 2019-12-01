@@ -10,7 +10,7 @@ TEST (ReaderTest, PNGImageIsLoaded) {
 
     Reader r;
 
-    RGB_Image image = r.loadImage("../images/mandrill.png");
+    Image image = r.loadImage("../images/mandrill.png");
 
     //Correct height
     EXPECT_EQ(image.size(),480);
@@ -20,7 +20,21 @@ TEST (ReaderTest, PNGImageIsLoaded) {
     EXPECT_EQ(image[0][0].size(),3);
 }
 
-TEST (ReaderTest, ChannelsAreLoaded) {
+TEST (ReaderTest, JPEGImageIsLoaded) {
+
+    Reader r;
+
+    Image image = r.loadImage("../images/lenna.jpeg");
+
+    //Correct height
+    EXPECT_EQ(image.size(),512);
+    //Correct width
+    EXPECT_EQ(image[0].size(),512);
+    //Correct spectrum
+    EXPECT_EQ(image[0][0].size(),1);
+}
+
+TEST (ReaderTest, RGBChannelsAreLoaded) {
 
     Reader r;
 
@@ -33,6 +47,7 @@ TEST (ReaderTest, ChannelsAreLoaded) {
     //Correct width
     EXPECT_EQ(red[0].size(),480);
 
+
     //Correct height
     EXPECT_EQ(green.size(),480);
     //Correct width
@@ -42,6 +57,7 @@ TEST (ReaderTest, ChannelsAreLoaded) {
     EXPECT_EQ(blue.size(),480);
     //Correct width
     EXPECT_EQ(blue[0].size(),480);
+
 
 }
 

@@ -10,7 +10,7 @@ TEST (ReaderTest, PNGImageIsLoaded) {
 
     Reader r;
 
-    RGB_Image image = r.loadImage("images/mandrill.png");
+    RGB_Image image = r.loadImage("../images/mandrill.png");
 
     //Correct height
     EXPECT_EQ(image.size(),480);
@@ -24,9 +24,9 @@ TEST (ReaderTest, ChannelsAreLoaded) {
 
     Reader r;
 
-    Channel red = r.extractRedChannel("images/mandrill.png");
-    Channel green = r.extractGreenChannel("images/mandrill.png");
-    Channel blue = r.extractBlueChannel("images/mandrill.png");
+    Channel red = r.extractRedChannel("../images/mandrill.png");
+    Channel green = r.extractGreenChannel("../images/mandrill.png");
+    Channel blue = r.extractBlueChannel("../images/mandrill.png");
 
     //Correct height
     EXPECT_EQ(red.size(),480);

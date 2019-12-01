@@ -1,10 +1,26 @@
-# Image-sound-processing
-PCSC project.
+# Image Processing
+PCSC - Project
 
-To compile and execute the project:
+**`Group 9`**: Sofia Dandjee, Thomas Fry
 
-Open your terminal and enter:
-- cd folder
-- cmake .
-- make
-- ./main
+
+## Compile and run the project
+
+In the build folder:
+~~~~shell
+cmake ..
+make
+./main
+~~~~
+
+## Generate the documentation
+
+## Run the tests
+In the build folder:
+~~~~shell
+cmake ..
+make
+./readerTest
+~~~~
+
+

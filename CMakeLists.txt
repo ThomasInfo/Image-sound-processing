@@ -2,13 +2,14 @@ cmake_minimum_required(VERSION 3.10)
 project(Image_processing)
 
 set(CMAKE_CXX_STANDARD 14)
+set( CMAKE_CXX_FLAGS " -pthread " )
 #set(EXECUTABLE_OUTPUT_PATH "build")
 
 enable_testing()
 add_subdirectory(gtest)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-add_executable(main src/main.cpp src/Reader.cpp src/Reader.h)
+add_executable(main src/main.cpp src/Reader.cpp src/Reader.h src/Histogram.cpp src/Histogram.h)
 add_executable (readerTest test/readerTest.cpp src/Reader.cpp src/Reader.h)
 
 target_link_libraries(readerTest gtest gtest_main)

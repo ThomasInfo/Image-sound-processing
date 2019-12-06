@@ -1,10 +1,8 @@
 #include <iostream>
 
-//#include <cstdlib>
+//#include "Reader.h"
 
-#include "Reader.h"
-
-using namespace cimg_library;
+//using namespace cimg_library;
 using namespace std;
 
 

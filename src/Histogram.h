@@ -14,7 +14,7 @@ typedef std::vector <std::vector<std::vector<int>>> Image_Histogram;
 //! Typedef
 /*! A Channel_Histogram represents a 1D histogram of pixel intensity values, either for a greyscale image or only one color (red, green OR blue).
  * It shows the number of pixels in an image at each different intensity value (black, red, green, OR blue). */
-typedef std::vector<std::vector<int>> Channel_Histogram;
+typedef std::vector<int> Channel_Histogram;
 
 
 //! Histogram class
@@ -46,14 +46,6 @@ public:
      * @return its Channel_Histogram
      */
     Channel_Histogram compute_Channel_Histogram(Channel) const;
-
-
-    //! Extract one of the three Channel_Histograms from an Image_Histogram
-    /*!
-     * @param an Image_Histogram and the char corresponding to the Channel of interest: 'r', 'g' or 'b'
-     * @return the Channel_Histogram of interest
-     */
-    Channel_Histogram extract_Channel_Histogram(Image_Histogram, char) const;
 };
 
 

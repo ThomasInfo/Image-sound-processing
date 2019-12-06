@@ -2,6 +2,7 @@
 // Created by Sofia on 29/11/2019.
 //
 
+#include <iostream>
 #include "Reader.h"
 
 using namespace cimg_library;
@@ -71,4 +72,16 @@ Channel Reader::convertChannel (CImg <int> cImg) const {
     }
 
     return image;
+}
+
+
+bool Reader::is_in_color(Image image) const {
+    bool in_color;
+    if (image[0][0].size() == 3) {
+        bool = True;
+    }
+    else if (image[0][0].size() == 1) {
+        bool = False;
+    }
+    else cout << "Image should have spectrum dimension 1 or 3." << '\n';
 }

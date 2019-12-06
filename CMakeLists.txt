@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 project(Image_processing)
 
 set(CMAKE_CXX_STANDARD 14)
-#set(EXECUTABLE_OUTPUT_PATH "build")
 
 enable_testing()
 add_subdirectory(gtest)
@@ -10,10 +9,12 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 add_executable(main src/main.cpp src/Reader.cpp src/Reader.h)
 add_executable (readerTest test/readerTest.cpp src/Reader.cpp src/Reader.h)
+add_executable (filterTest test/filterTest.cpp src/Filter.cpp src/Filter.h)
 
 target_link_libraries(readerTest gtest gtest_main)
+target_link_libraries(filterTest gtest gtest_main)
 add_test(readerTest readerTest)
-
+add_test(filterTest filterTest)
 
 find_package (PNG)
 if (PNG_FOUND)
@@ -22,7 +23,8 @@ if (PNG_FOUND)
     target_link_libraries (main ${PNG_LIBRARY})
     target_include_directories(readerTest PUBLIC ${PNG_INCLUDE_DIR})
     target_link_libraries (readerTest ${PNG_LIBRARY})
-
+    target_include_directories(filterTest PUBLIC ${PNG_INCLUDE_DIR})
+    target_link_libraries (filterTest ${PNG_LIBRARY})
 else ()
 
     message(FATAL_ERROR "libpng not found")
@@ -35,7 +37,8 @@ if (JPEG_FOUND)
     target_link_libraries (main ${JPEG_LIBRARY})
     target_include_directories(readerTest PUBLIC ${JPEG_INCLUDE_DIR})
     target_link_libraries (readerTest ${JPEG_LIBRARY})
-
+    target_include_directories(filterTest PUBLIC ${JPEG_INCLUDE_DIR})
+    target_link_libraries (filterTest ${JPEG_LIBRARY})
 else ()
 
     message(FATAL_ERROR "libjpeg not found")

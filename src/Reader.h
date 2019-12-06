@@ -104,7 +104,13 @@ public:
      */
     Channel convertChannel (CImg <int> cImg) const;
 
-
+    //! Tells if the image is in color or in greyscale
+    /*!
+     *
+     * @param an Image
+     * @return a boolean, True if the image is in color, False if in greyscale
+     */
+    bool is_in_color (Image image) const;
 };
 
 

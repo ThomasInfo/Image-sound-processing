@@ -37,7 +37,7 @@ public:
      * @param an Image
      * @return its Image_Histogram
      */
-    Image_Histogram compute_Image_Histogram(Image) const;
+    Image_Histogram compute_Image_Histogram(RGBImage) const;
 
 
     //! Compute a Channel_Histogram from a Channel

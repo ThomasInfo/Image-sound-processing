@@ -6,11 +6,11 @@
 #include "../src/Reader.h"
 
 
-TEST (ReaderTest, PNGImageIsLoaded) {
+TEST (ReaderTest, RGBImageIsLoaded) {
 
     Reader r;
 
-    Image image = r.loadImage("../images/mandrill.png");
+    RGBImage image = r.loadRGBImage("../images/mandrill.png");
 
     //Correct height
     EXPECT_EQ(image.size(),480);
@@ -20,18 +20,17 @@ TEST (ReaderTest, PNGImageIsLoaded) {
     EXPECT_EQ(image[0][0].size(),3);
 }
 
-TEST (ReaderTest, JPEGImageIsLoaded) {
+TEST (ReaderTest, GreyScaleImageIsLoaded) {
 
     Reader r;
 
-    Image image = r.loadImage("../images/lenna.jpeg");
+    Channel image = r.loadGSImage("../images/lenna.jpeg");
 
     //Correct height
     EXPECT_EQ(image.size(),512);
     //Correct width
     EXPECT_EQ(image[0].size(),512);
-    //Correct spectrum
-    EXPECT_EQ(image[0][0].size(),1);
+
 }
 
 TEST (ReaderTest, RGBChannelsAreLoaded) {

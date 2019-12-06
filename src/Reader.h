@@ -15,8 +15,8 @@
 #include "../libraries/libjpeg/jpeglib.h"
 
 
-//#define cimg_use_jpeg 1
-//#define cimg_use_png 1
+#define cimg_use_jpeg 1
+#define cimg_use_png 1
 
 
 #include "../libraries/CImg.h"
@@ -26,11 +26,11 @@ using namespace cimg_library;
 /*! An Image represents a 2D image of pixels (int)
  * with 3 channels (RGB)
  * or 1 channel (greyscale) */
-typedef std::vector <std::vector<std::vector<int>>> Image;
+typedef std::vector <std::vector<std::vector<int>>> RGBImage;
 
 //! Typedef
 /*! A channel represents a 2D image of pixels (int)
- * in a red/green/blue spectrum */
+ * in a red/green/blue/grey spectrum */
 typedef std::vector<std::vector<int>> Channel;
 
 //! Reader class
@@ -56,13 +56,21 @@ public:
      */
     CImg <int> loadCImg(std::string filename) const;
 
-    //! Loads an image into a 1 or 3-channelled 2D vector of int
+    //! Loads an RGB image into a 1 or 3-channelled 2D vector of int
     /*!
      *
      * @param filename a string, the path of the file
      * @return an Image
      */
-    Image loadImage(std::string filename) const;
+     RGBImage loadRGBImage(std::string filename) const;
+
+    //! Loads a greyscale image into a 2D vector of int
+    /*!
+     *
+     * @param filename a string, the path of the file
+     * @return a Channel
+     */
+    Channel loadGSImage(std::string filename) const;
 
     //! Extracts the red channel of an image
     /*!
@@ -94,7 +102,7 @@ public:
      * @param cImg, to be converted
      * @return an Image
      */
-    Image convertImage (CImg <int> cImg) const;
+    RGBImage convertImage (CImg <int> cImg) const;
 
     //! Converts a CImg type into a channel
     /*!
@@ -104,13 +112,15 @@ public:
      */
     Channel convertChannel (CImg <int> cImg) const;
 
+
     //! Tells if the image is in color or in greyscale
     /*!
      *
      * @param an Image
-     * @return a boolean, True if the image is in color, False if in greyscale
+     * @return a boolean, true if the image is in color, false if in greyscale
      */
-    bool is_in_color (Image image) const;
+    //bool isInColor (RGBImage image) const;
+
 };
 
 

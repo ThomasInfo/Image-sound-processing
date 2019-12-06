@@ -3,7 +3,6 @@ project(Image_processing)
 
 set(CMAKE_CXX_STANDARD 14)
 set( CMAKE_CXX_FLAGS " -pthread " )
-#set(EXECUTABLE_OUTPUT_PATH "build")
 
 enable_testing()
 add_subdirectory(gtest)

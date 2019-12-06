@@ -21,9 +21,15 @@ CImg <int> Reader::loadCImg(std::string filename) const {
     return image;
 }
 
-Image Reader::loadImage(string filename) const {
+RGBImage Reader::loadRGBImage(string filename) const {
     CImg<int> image = loadCImg(filename);
     return convertImage(image);
+}
+
+
+Channel Reader::loadGSImage(std::string filename) const {
+    CImg<int> image = loadCImg(filename);
+    return convertChannel(image);
 }
 
 Channel Reader::extractRedChannel (string filename) const {
@@ -41,12 +47,12 @@ Channel Reader::extractGreenChannel (string filename) const {
     return convertChannel(image.get_channel(2));
 }
 
-Image Reader::convertImage (CImg <int> cImg) const {
+RGBImage Reader::convertImage (CImg <int> cImg) const {
     int lines = cImg.height();
     int columns = cImg.width();
     int channels = cImg.spectrum();
 
-    Image image (lines, vector<vector<int>>(columns, vector<int>(channels)));
+    RGBImage image (lines, vector<vector<int>>(columns, vector<int>(channels)));
 
     for(size_t i(0); i < lines; i++) {
         for (size_t j(0); j < columns; ++j) {
@@ -75,13 +81,13 @@ Channel Reader::convertChannel (CImg <int> cImg) const {
 }
 
 
-bool Reader::is_in_color(Image image) const {
-    bool in_color;
+/*bool Reader::isInColor(Image image) const {
+
     if (image[0][0].size() == 3) {
-        bool = True;
+        return true;
     }
     else if (image[0][0].size() == 1) {
-        bool = False;
+        return false;
     }
-    else cout << "Image should have spectrum dimension 1 or 3." << '\n';
-}
+
+}*/

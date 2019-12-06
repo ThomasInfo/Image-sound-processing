@@ -8,7 +8,7 @@ Histogram::Histogram() {}
 
 Histogram::~Histogram () {}
 
-Image_Histogram Histogram::compute_Image_Histogram(Image image) const {
+Image_Histogram Histogram::compute_Image_Histogram(RGBImage image) const {
     int nb_lines = image.size();
     int nb_columns = image[0].size();
     Image_Histogram image_histo(256, vector<vector<int>>(256, vector<int>(256)));
@@ -39,9 +39,4 @@ Channel_Histogram Histogram::compute_Channel_Histogram(Channel channel) const {
     }
 
     return channel_histo;
-}
-
-
-
-
 }

@@ -3,17 +3,17 @@
 //
 
 #include "gtest/gtest.h"
-#include "../src/Reader.h"
-#include "../src/FFT.cpp"
+#include "../src/FFT.h"
 
+using namespace std;
 
-TEST (fftTest, GreyScaleFFTIsComputed) {
+TEST (FFTTest, GreyScaleFFTIsComputed) {
 
     Reader r;
     Channel image = r.loadGSImage("../images/lenna.jpeg");
 
-    vector<vector<complex<double>>> GS_FFT = Fast_Fourier_Transform(image);
-    vector<vector<int>> GS_FFT_modulus = Fast_Fourier_modulus(FFT);
+    FourierTransform GS_FFT = FastFourierTransform(image);
+    vector<vector<double >> GS_FFT_modulus = FastFourierModulus(GS_FFT);
 
     //Correct height
     EXPECT_EQ(GS_FFT.size(),512);
@@ -26,20 +26,20 @@ TEST (fftTest, GreyScaleFFTIsComputed) {
 }
 
 
-TEST (fftTest, ColorsFFTAreComputed) {
+TEST (FFTTest, ColorsFFTAreComputed) {
 
     Reader r;
     Channel red = r.extractRedChannel("../images/mandrill.png");
     Channel green = r.extractGreenChannel("../images/mandrill.png");
     Channel blue = r.extractBlueChannel("../images/mandrill.png");
 
-    vector<vector<complex<double>>> red_FFT = Fast_Fourier_Transform(red);
-    vector<vector<complex<double>>> green_FFT = Fast_Fourier_Transform(green);
-    vector<vector<complex<double>>> blue_FFT = Fast_Fourier_Transform(blue);
+    FourierTransform red_FFT = FastFourierTransform(red);
+    FourierTransform green_FFT = FastFourierTransform(green);
+    FourierTransform blue_FFT = FastFourierTransform(blue);
 
-    vector<vector<int>> red_FFT_modulus = Fast_Fourier_modulus(red_FFT);
-    vector<vector<int>> green_FFT_modulus = Fast_Fourier_modulus(green_FFT);
-    vector<vector<int>> blue_FFT_modulus = Fast_Fourier_modulus(blue_FFT);
+    vector<vector<double>> red_FFT_modulus = FastFourierModulus(red_FFT);
+    vector<vector<double>> green_FFT_modulus = FastFourierModulus(green_FFT);
+    vector<vector<double>> blue_FFT_modulus = FastFourierModulus(blue_FFT);
 
     //Correct height
     EXPECT_EQ(red_FFT.size(),480);

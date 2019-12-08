@@ -8,20 +8,38 @@ enable_testing()
 add_subdirectory(gtest)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-add_executable(main src/main.cpp src/Reader.cpp src/Reader.h src/Histogram.cpp src/Histogram.h src/FFT.cpp)
-add_executable (readerTest test/readerTest.cpp test/histogramTest.cpp test/fftTest.cpp src/Reader.cpp src/Reader.h src/Histogram.cpp src/Histogram.h src/FFT.cpp)
+#add_executable(main src/main.cpp src/Reader.cpp src/Reader.h src/Histogram.cpp src/Histogram.h)
+add_executable(readerTest test/readerTest.cpp src/Reader.cpp src/Reader.h)
+add_executable(contourExtractorTest test/contourExtractorTest.cpp src/ContourExtractor.h src/ContourExtractor.cpp)
+add_executable(histogramTest test/histogramTest.cpp src/Histogram.cpp src/Histogram.h src/Reader.h src/Reader.cpp)
+add_executable(fftTest test/fftTest.cpp src/FFT.cpp src/FFT.h src/Reader.h src/Reader.cpp)
 
 target_link_libraries(readerTest gtest gtest_main)
 add_test(readerTest readerTest)
+
+target_link_libraries(contourExtractorTest gtest gtest_main)
+add_test(contourExtractorTest contourExtractorTest)
+
+target_link_libraries(histogramTest gtest gtest_main)
+add_test(histogramTest histogramTest)
+
+target_link_libraries(fftTest gtest gtest_main)
+add_test(fftTest fftTest)
 
 
 find_package (PNG)
 if (PNG_FOUND)
 
-    target_include_directories(main PUBLIC ${PNG_INCLUDE_DIR})
-    target_link_libraries (main ${PNG_LIBRARY})
+    #target_include_directories(main PUBLIC ${PNG_INCLUDE_DIR})
+    #target_link_libraries (main ${PNG_LIBRARY})
     target_include_directories(readerTest PUBLIC ${PNG_INCLUDE_DIR})
     target_link_libraries (readerTest ${PNG_LIBRARY})
+    target_include_directories(contourExtractorTest PUBLIC ${PNG_INCLUDE_DIR})
+    target_link_libraries (contourExtractorTest ${PNG_LIBRARY})
+    target_include_directories(histogramTest PUBLIC ${PNG_INCLUDE_DIR})
+    target_link_libraries (histogramTest ${PNG_LIBRARY})
+    target_include_directories(fftTest PUBLIC ${PNG_INCLUDE_DIR})
+    target_link_libraries (fftTest ${PNG_LIBRARY})
 
 else ()
 
@@ -31,10 +49,16 @@ endif ()
 find_package (JPEG)
 if (JPEG_FOUND)
 
-    target_include_directories(main PUBLIC ${JPEG_INCLUDE_DIR})
-    target_link_libraries (main ${JPEG_LIBRARY})
+    #target_include_directories(main PUBLIC ${JPEG_INCLUDE_DIR})
+    #target_link_libraries (main ${JPEG_LIBRARY})
     target_include_directories(readerTest PUBLIC ${JPEG_INCLUDE_DIR})
     target_link_libraries (readerTest ${JPEG_LIBRARY})
+    target_include_directories(contourExtractorTest PUBLIC ${JPEG_INCLUDE_DIR})
+    target_link_libraries (contourExtractorTest ${JPEG_LIBRARY})
+    target_include_directories(histogramTest PUBLIC ${JPEG_INCLUDE_DIR})
+    target_link_libraries (histogramTest ${JPEG_LIBRARY})
+    target_include_directories(fftTest PUBLIC ${JPEG_INCLUDE_DIR})
+    target_link_libraries (fftTest ${JPEG_LIBRARY})
 
 else ()
 

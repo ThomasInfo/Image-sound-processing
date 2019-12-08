@@ -37,7 +37,7 @@ public:
      * @param image a Channel, the input image
      * @return a Channel, the output image representing the vertical contours of the input
      */
-    Channel verticalEdgeDetector (Channel image) const;
+    Channel detectVerticalEdges (Channel image) const;
 
     //! Extracts horizontal contours of an image
     /*!
@@ -45,7 +45,7 @@ public:
      * @param image a Channel, the input image
      * @return a Channel, the output image representing the horizontal contours of the input
      */
-    Channel horizontalEdgeDetector (Channel image) const;
+    Channel detectHorizontalEdges (Channel image) const;
 
     //! Applies convolution between an image and a filter
     /*!
@@ -62,7 +62,7 @@ public:
      * @param image a Channel, the input image
      * @return a Channel, the output image representing the contours of the input
      */
-    Channel allEdgeDetector (Channel image) const;
+    Channel detectAllEdges (Channel image) const;
 };
 
 

@@ -2,10 +2,10 @@
 // Created by Sofia on 04/12/2019.
 //
 
-using namespace std;
-
 #include <iostream>
 #include <cmath>
+
+using namespace std;
 
 #include "ContourExtractor.h"
 ContourExtractor::ContourExtractor() {}
@@ -26,13 +26,13 @@ Channel ContourExtractor::preprocess(Channel image) const {
     return image1;
 }
 
-Channel ContourExtractor::verticalEdgeDetector(Channel image) const {
+Channel ContourExtractor::detectVerticalEdges(Channel image) const {
     vector<vector<double>> filter = {{-1, 0, 1},{-2, 0, 2},{-1, 0, 1}};
     Channel padded = preprocess(image);
     return convolution(padded, filter);
 }
 
-Channel ContourExtractor::horizontalEdgeDetector(Channel image) const {
+Channel ContourExtractor::detectHorizontalEdges(Channel image) const {
     vector<vector<double>> filter = {{-1, -2, -1},{0, 0, 0},{1, 2, 1}};
     Channel padded = preprocess(image);
     return convolution(padded, filter);
@@ -59,12 +59,12 @@ Channel ContourExtractor::convolution(Channel image, vector<vector<double>> filt
     return filtered;
 }
 
-Channel ContourExtractor::allEdgeDetector(Channel image) const {
+Channel ContourExtractor::detectAllEdges(Channel image) const {
     size_t l = image.size();
     size_t c = image[0].size();
 
-    Channel horizontal = horizontalEdgeDetector(image);
-    Channel vertical = verticalEdgeDetector(image);
+    Channel horizontal = detectHorizontalEdges(image);
+    Channel vertical = detectVerticalEdges(image);
     Channel contours (l, vector<int> (c));
 
     for (size_t i(0); i < l; ++i) {

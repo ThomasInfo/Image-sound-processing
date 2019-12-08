@@ -4,6 +4,7 @@
 using namespace std;
 
 vector<vector<complex<double>>> Fast_Fourier_Transform(Channel channel) const {
+
     int nb_lines = channel.size();
     int nb_columns = channel[0].size();
     vector<vector<complex<double>>> FFT(nb_lines, vector<complex<double>>(nb_columns));
@@ -22,4 +23,21 @@ vector<vector<complex<double>>> Fast_Fourier_Transform(Channel channel) const {
     }
 
     return FFT;
+}
+
+
+vector<vector<int>>> Fast_Fourier_Modulus(Channel channel) const {
+
+    vector<vector<complex<double>>> FFT = Fast_Fourier_Transform(channel);
+    int nb_lines = FFT.size();
+    int nb_columns = FFT[0].size();
+    vector<vector<int>>> modulus(nb_lines, vector<int> (nb_columns));
+
+    for ( int k = 0; k < nb_lines; k++) {
+        for ( int l = 0; l < nb_columns; l++) {
+            modulus[k][l] = abs(FFT[k][l]);
+        }
+    }
+
+    return modulus;
 }

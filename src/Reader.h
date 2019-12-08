@@ -24,12 +24,11 @@ using namespace cimg_library;
 
 //! Typedef
 /*! An Image represents a 2D image of pixels (int)
- * with 3 channels (RGB)
- * or 1 channel (greyscale) */
+ * with 3 channels (RGB) */
 typedef std::vector <std::vector<std::vector<int>>> RGBImage;
 
 //! Typedef
-/*! A channel represents a 2D image of pixels (int)
+/*! A Channel represents a 2D image of pixels (int)
  * in a red/green/blue/grey spectrum */
 typedef std::vector<std::vector<int>> Channel;
 
@@ -116,7 +115,7 @@ public:
     //! Tells if the image is in color or in greyscale
     /*!
      *
-     * @param an Image
+     * @param a RGBImage
      * @return a boolean, true if the image is in color, false if in greyscale
      */
     //bool isInColor (RGBImage image) const;

@@ -8,8 +8,8 @@ enable_testing()
 add_subdirectory(gtest)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-add_executable(main src/main.cpp src/Reader.cpp src/Reader.h src/Histogram.cpp src/Histogram.h)
-add_executable (readerTest test/readerTest.cpp src/Reader.cpp src/Reader.h)
+add_executable(main src/main.cpp src/Reader.cpp src/Reader.h src/Histogram.cpp src/Histogram.h src/FFT.cpp)
+add_executable (readerTest test/readerTest.cpp test/histogramTest.cpp test/fftTest.cpp src/Reader.cpp src/Reader.h src/Histogram.cpp src/Histogram.h src/FFT.cpp)
 
 target_link_libraries(readerTest gtest gtest_main)
 add_test(readerTest readerTest)

@@ -1,3 +1,6 @@
+#define _USE_MATH_DEFINES
+#include <cmath>
+
 #include "FFT.h"
 
 using namespace std;
@@ -8,13 +11,14 @@ FourierTransform FastFourierTransform(Channel channel) {
     int nb_lines = channel.size();
     int nb_columns = channel[0].size();
     FourierTransform FFT(nb_lines, vector<Complex>(nb_columns));
+    Complex i = sqrt(-1);
 
     for ( int k = 0; k < nb_lines; k++) {
         for ( int l = 0; l < nb_columns; l++) {
-            complex<double> F_k_l(0.0, 0.0); // F[k,l] with F the Fast Fourier Transform
+            Complex F_k_l(0.0, 0.0); // F[k,l] with F the Fast Fourier Transform
             for ( int nx = 0; nx < nb_lines; nx++) {
                 for ( int ny = 0; ny < nb_columns; ny++) {
-                    double angle = - 2 * M_PI * (nx * k / nb_lines + ny * l / nb_columns);
+                    double angle = - 2 * i * M_PI * (nx * k / nb_lines + ny * l / nb_columns);
                     F_k_l += channel[nx][ny] * exp(angle);
                 }
             }

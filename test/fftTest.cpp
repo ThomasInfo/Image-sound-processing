@@ -1,6 +1,7 @@
 //
 // Created by Sofia on 01/12/2019.
 //
+#include <iostream>
 
 #include "gtest/gtest.h"
 #include "../src/FFT.h"
@@ -8,6 +9,7 @@
 using namespace std;
 
 TEST (FFTTest, GreyScaleFFTIsComputed) {
+    cout << "Please be patient, this test lasts approximately 2000 seconds (half an hour)." << "\n";
 
     Reader r;
     Channel image = r.loadGSImage("../images/lenna.jpeg");
@@ -27,6 +29,7 @@ TEST (FFTTest, GreyScaleFFTIsComputed) {
 
 
 TEST (FFTTest, ColorsFFTAreComputed) {
+    cout << "Please be patient, this test lasts approximately 7000 seconds (two hours)." << "\n";
 
     Reader r;
     Channel red = r.extractRedChannel("../images/mandrill.png");
@@ -68,6 +71,33 @@ TEST (FFTTest, ColorsFFTAreComputed) {
     EXPECT_EQ(blue_FFT_modulus.size(),480);
     //Correct width
     EXPECT_EQ(blue_FFT_modulus[0].size(),480);
+}
+
+
+TEST (FFTTest, BlackFFTIsRight) {
+
+    Channel black_image(10, vector<int>(10, 0)); // creating a black greyscale image Channel
+
+    FourierTransform black_FFT = FastFourierTransform(black_image);
+    vector<vector<double >> black_FFT_modulus = FastFourierModulus(black_FFT);
+
+    // correct computation of the Fast Fourier Transform and its modulus
+    Complex zero(0.0, 0.0);
+    for ( int k = 0; k < 10; k++) {
+        for (int l = 0; l < 10; l++) {
+            EXPECT_EQ(black_FFT[k][l], zero);
+            EXPECT_EQ(black_FFT_modulus[k][l], 0.0);
+        }
+    }
+
+}
+
+
+TEST (FTTTest, FFTIsRight) {
+
+    Channel channel = {{1, 9, 6, 5}, {24, -5, 3, 13}, {8, 0, 1, 7}};
+
+
 }
 
 

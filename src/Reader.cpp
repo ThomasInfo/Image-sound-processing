@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "Reader.h"
+#include <cassert>
 
 using namespace cimg_library;
 using namespace std;
@@ -39,18 +40,22 @@ Channel Reader::extractRedChannel (string filename) const {
 
 Channel Reader::extractBlueChannel (string filename) const {
     CImg<int> image = loadCImg(filename);
-    return convertChannel(image.get_channel(1));
+    return convertChannel(image.get_channel(2));
 }
 
 Channel Reader::extractGreenChannel (string filename) const {
     CImg<int> image = loadCImg(filename);
-    return convertChannel(image.get_channel(2));
+    return convertChannel(image.get_channel(1));
 }
 
 RGBImage Reader::convertImage (CImg <int> cImg) const {
     int lines = cImg.height();
     int columns = cImg.width();
     int channels = cImg.spectrum();
+
+    assert(lines > 0);
+    assert(columns > 0);
+    assert(channels > 0);
 
     RGBImage image (lines, vector<vector<int>>(columns, vector<int>(channels)));
 
@@ -69,6 +74,8 @@ Channel Reader::convertChannel (CImg <int> cImg) const {
     int lines = cImg.height();
     int columns = cImg.width();
 
+    assert(lines > 0);
+    assert (columns > 0);
     Channel image (lines, vector<int>(columns));
 
     for(size_t i(0); i < lines; i++) {
@@ -80,14 +87,24 @@ Channel Reader::convertChannel (CImg <int> cImg) const {
     return image;
 }
 
+Channel Reader::convertColoredToGS (std::string filename) const {
+    Channel red = extractRedChannel(filename);
+    Channel blue = extractBlueChannel(filename);
+    Channel green = extractGreenChannel(filename);
 
-/*bool Reader::isInColor(Image image) const {
+    size_t l = red.size();
+    size_t c = red[0].size();
 
-    if (image[0][0].size() == 3) {
-        return true;
+    assert(l>0);
+    assert(c>0);
+
+    Channel greyscale (l, vector <int> (c));
+
+    for (size_t i (0); i < l; ++i) {
+        for (size_t j(0); j < c; ++j) {
+            greyscale [i][j] = (red[i][j]+green[i][j]+blue[i][j])/3;
+        }
     }
-    else if (image[0][0].size() == 1) {
-        return false;
-    }
 
-}*/
+    return greyscale;
+}

@@ -8,13 +8,14 @@
 
 #include <vector>
 #include <string>
-#include <stdlib.h>
 
 //Include the libraries for png and jpeg images
 #include "../libraries/libpng-1.6.37/png.h"
 #include "../libraries/libpng-1.6.37/pnglibconf.h"
 #include "../libraries/libjpeg/jpeglib.h"
 
+#define cimg_use_png 1
+#define cimg_use_jpeg 1
 
 #include "../libraries/CImg.h"
 using namespace cimg_library;
@@ -108,14 +109,13 @@ public:
      */
     Channel convertChannel (CImg <int> cImg) const;
 
-
-    //! Tells if the image is in color or in greyscale
+    //! Loads an RGB image as a GS image
     /*!
      *
-     * @param a RGBImage
-     * @return a boolean, true if the image is in color, false if in greyscale
+     * @param filename, the path of the file
+     * @return a Channel, the image converted to greyscale
      */
-    //bool isInColor (RGBImage image) const;
+     Channel convertColoredToGS (std::string filename) const;
 
 };
 

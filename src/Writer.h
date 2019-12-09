@@ -25,8 +25,27 @@ using namespace cimg_library;
 class Writer {
 
 public:
+
+    //! A default constructor
+    Writer();
+
+    //! A destructor
+    ~Writer();
+
+    //! Writes a colored CImg image from a 3D vector
+    /*!
+     *
+     * @param image, an RGBImage
+     * @return an image in the CImg<int> format
+     */
     CImg <int> createRGBImage (RGBImage image) const;
 
+    //! Writes a greyscale CImg image from a 2D vector
+    /*!
+     *
+     * @param image, a Channel
+     * @return an image in the CImg<int> format
+     */
     CImg <int> createGSImage (Channel image) const;
 
 };

@@ -23,7 +23,7 @@ public:
     //! A destructor
     ~ContourExtractor();
 
-    //! Adds a padding of 0-values all around the value, prepares the image for convolution
+    //! Adds a padding of 0-values all around the image, prepares the image for convolution
     /*!
      *
      * @param image a Channel, the image to be padded

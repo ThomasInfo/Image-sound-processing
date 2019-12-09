@@ -387,13 +387,9 @@
 
 // Include display-specific headers.
 #if cimg_display==1
-//#include <X11/Xlib.h>
-//#include <X11/Xutil.h>
-//#include <X11/keysym.h>
-
-#include "libX11/include/X11/Xlib.h"
-#include "libX11/include/X11/Xutil.h"
-
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/keysym.h>
 #include <pthread.h>
 #include <stdlib.h>
 #ifdef cimg_use_xshm
@@ -444,8 +440,8 @@
 #endif
 #endif
 
-#define cimg_use_jpeg 1
 #define cimg_use_png 1
+#define cimg_use_jpeg 1
 
 // Configure LibPNG support.
 // (http://www.libpng.org)
@@ -456,7 +452,7 @@
 // (see methods 'CImg<T>::{load,save}_png()'.
 #ifdef cimg_use_png
 extern "C" {
-#include "libpng-1.6.37/png.h"
+#include "png.h"
 }
 #endif
 
@@ -470,7 +466,7 @@ extern "C" {
 #ifdef cimg_use_jpeg
 extern "C" {
 #include "libjpeg/jpeglib.h"
-#include "libjpeg/setjmp.h"
+#include "setjmp.h"
 }
 #endif
 

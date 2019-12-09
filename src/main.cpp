@@ -12,13 +12,16 @@ int main() {
     ContourExtractor c;
     Writer w;
 
-    Channel image = r.loadGSImage("../images/lenna.jpeg");
-    Channel filtered = c.detectAllEdges(image);
-    CImg<int> cimg = w.createGSImage(filtered);
+    cout << " a";
+    //Channel image = r.convertColoredToGS("../images/fjord.jpeg");
+    RGBImage image = r.loadRGBImage("../images/mandrill.png");
+    cout << " b";
+    //Channel filtered = c.detectAllEdges(image);
+    cout << " c";
+    //CImg<int> cimg = w.createGSImage(filtered);
 
-    CImgDisplay mainDisplay;
-
-    mainDisplay.display(cimg);
+    cout << " d";
+    //cimg.save("fjords_contour.png");
 
     return 0;
 }

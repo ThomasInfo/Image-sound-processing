@@ -9,7 +9,6 @@
 TEST (ReaderTest, RGBImageIsLoaded) {
 
     Reader r;
-
     RGBImage image = r.loadRGBImage("../images/mandrill.png");
 
     //Correct height
@@ -23,7 +22,6 @@ TEST (ReaderTest, RGBImageIsLoaded) {
 TEST (ReaderTest, GreyScaleImageIsLoaded) {
 
     Reader r;
-
     Channel image = r.loadGSImage("../images/lenna.jpeg");
 
     //Correct height
@@ -34,7 +32,6 @@ TEST (ReaderTest, GreyScaleImageIsLoaded) {
 }
 
 TEST (ReaderTest, RGBChannelsAreLoaded) {
-
     Reader r;
 
     Channel red = r.extractRedChannel("../images/mandrill.png");
@@ -56,7 +53,6 @@ TEST (ReaderTest, RGBChannelsAreLoaded) {
     EXPECT_EQ(blue.size(),480);
     //Correct width
     EXPECT_EQ(blue[0].size(),480);
-
 
 }
 

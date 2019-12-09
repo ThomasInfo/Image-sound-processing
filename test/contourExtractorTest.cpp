@@ -18,7 +18,7 @@ TEST (ContourExtractor, VerticalEdgeDetector) {
     ContourExtractor extractor;
     Channel testImage = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},};
     Channel filtered = extractor.detectVerticalEdges(testImage);
-    Channel test =  { {40, 40, 40, 40, 40}, {-40, -40, -40, -40, -40}, {-40, -40, -40, -40, -40}, {40, 40, 40, 40, 40}};
+    Channel test =  { {-11, -6, -6, -6, 17}, {-28, -8, -8, -8, 36}, {-48, -8, -8, -8, 56}, {-46, -6, -6, -6, 52}};
     EXPECT_EQ(filtered, test);
 }
 
@@ -26,7 +26,7 @@ TEST (ContourExtractor, HorizontalEdgeDetector) {
     ContourExtractor extractor;
     Channel testImage = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},};
     Channel filtered = extractor.detectHorizontalEdges(testImage);
-    Channel test =  { {12, -8, -8, -8, 12}, {12, -8, -8, -8, 12}, {12, -8, -8, -8, 12}, {12, -8, -8, -8, 12}};
+    Channel test =  { {-19, -28, -32, -36, -29}, {-30, -40, -40, -40, -30}, {-30, -40, -40, -40, -30}, {34, 48, 52, 56, 44}};
     EXPECT_EQ(filtered, test);
 }
 
@@ -34,7 +34,7 @@ TEST (ContourExtractor, AllEdgeDetector) {
     ContourExtractor extractor;
     Channel testImage = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},};
     Channel filtered = extractor.detectAllEdges(testImage);
-    Channel test =  { {41, 40, 40, 40, 41}, {41, 40, 40, 40, 41}, {41, 40, 40, 40, 41}, {41, 40, 40, 40, 41}};
+    Channel test =  { {21, 28, 32, 36, 33}, {41, 40, 40, 40, 46}, {56, 40, 40, 40, 63}, {57, 48, 52, 56, 68}};
     EXPECT_EQ(filtered, test);
 }
 

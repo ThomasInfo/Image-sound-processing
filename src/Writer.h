@@ -26,6 +26,9 @@ class Writer {
 
 public:
     CImg <int> createRGBImage (RGBImage image) const;
+
+    CImg <int> createGSImage (Channel image) const;
+
 };
 
 

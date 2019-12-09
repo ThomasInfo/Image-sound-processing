@@ -382,7 +382,7 @@
 #endif*/
 
 #ifndef cimg_display
-#define cimg_display 0
+#define cimg_display 1
 #endif
 
 // Include display-specific headers.
@@ -391,6 +391,7 @@
 #include <X11/Xutil.h>
 #include <X11/keysym.h>
 #include <pthread.h>
+#include <stdlib.h>
 #ifdef cimg_use_xshm
 #include <sys/ipc.h>
 #include <sys/shm.h>

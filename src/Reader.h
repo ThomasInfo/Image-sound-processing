@@ -8,14 +8,21 @@
 
 #include <vector>
 #include <string>
+#include <stdlib.h>
 
 //Include the libraries for png and jpeg images
 #include "../libraries/libpng-1.6.37/png.h"
 #include "../libraries/libpng-1.6.37/pnglibconf.h"
 #include "../libraries/libjpeg/jpeglib.h"
 
+#include "../libraries/libX11/include/X11/Xlib.h"
+#include "../libraries/libX11/include/X11/Xutil.h"
+#include <pthread.h>
+
+
 #define cimg_use_jpeg 1
 #define cimg_use_png 1
+#define cimg_display 1
 
 
 #include "../libraries/CImg.h"

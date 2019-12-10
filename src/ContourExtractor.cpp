@@ -32,7 +32,7 @@ Channel ContourExtractor::preprocess(Channel image) const {
 
 Channel ContourExtractor::detectVerticalEdges(Channel image) const {
 
-    vector<vector<double>> filter = {{-1, 0, 1},{-2, 0, 2},{-1, 0, 1}}; //Sobel filter
+    vector<vector<double>> filter = {{-1, -2, -1},{0, 0, 0},{1, 2, 1}}; //Sobel filter
 
     //Image padded with '0s' for convolution
     Channel padded = preprocess(image);
@@ -42,8 +42,8 @@ Channel ContourExtractor::detectVerticalEdges(Channel image) const {
 }
 
 Channel ContourExtractor::detectHorizontalEdges(Channel image) const {
-    vector<vector<double>> filter = {{-1, -2, -1},{0, 0, 0},{1, 2, 1}}; //Sobel filter
 
+    vector<vector<double>> filter = {{-1, 0, 1},{-2, 0, 2},{-1, 0, 1}}; //Sobel filter
     //Image padded with '0s' for convolution
     Channel padded = preprocess(image);
 

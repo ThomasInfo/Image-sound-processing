@@ -54,3 +54,9 @@ include/*
 lib/*
 bin/*
 test/test_runner
+
+##Doxygen
+CMakeDoxyfile.in
+CMakeDoxyfile.tpl.bak
+CMakeDoxygenDefaults.cmake
+

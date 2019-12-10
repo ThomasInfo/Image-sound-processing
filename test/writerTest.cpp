@@ -21,8 +21,8 @@ TEST (WriterTest, GSImageIsWritten) {
     EXPECT_EQ(cImg.height(), cImg1.height());
     EXPECT_EQ(cImg.width(), cImg1.width());
     EXPECT_EQ(cImg, cImg1);
-    cImg.save("original_lena.jpeg");
-    cImg1.save("rewritten_lena.jpeg");
+    cImg.save("../results/original_lena.jpeg");
+    cImg1.save("../results/rewritten_lena.jpeg");
 }
 
 TEST (WriterTest, RGBImageIsWritten) {
@@ -53,8 +53,8 @@ TEST (WriterTest, RGBImageIsWritten) {
     EXPECT_EQ(blue, blue1);
     EXPECT_EQ(cImg, cImg1);
 
-    cImg.save("original_mandrill.png");
-    cImg1.save("rewritten_mandrill.png");
+    cImg.save("../results/original_mandrill.png");
+    cImg1.save("../results/rewritten_mandrill.png");
 }
 
 TEST (WriterTest, RGBConvertedtoGS) {

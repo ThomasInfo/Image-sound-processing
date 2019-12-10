@@ -9,7 +9,7 @@
 
 #include <vector>
 
-//! ContourExtraction class
+//! ContourExtractor  class
 /*!
  * Implements the Sobel filter to extract contours of an image
  */

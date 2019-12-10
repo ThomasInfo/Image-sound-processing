@@ -19,7 +19,7 @@ TEST (ContourExtractorTest, ZeroPadding) {
 TEST (ContourExtractor, ConvolutionVertical) {
     ContourExtractor extractor;
     Channel testImage = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},};
-    Channel filtered = extractor.detectVerticalEdges(testImage);
+    Channel filtered = extractor.detectHorizontalEdges(testImage);
     Channel test =  { {-11, -6, -6, -6, 17}, {-28, -8, -8, -8, 36}, {-48, -8, -8, -8, 56}, {-46, -6, -6, -6, 52}};
     EXPECT_EQ(filtered, test);
 }
@@ -27,7 +27,7 @@ TEST (ContourExtractor, ConvolutionVertical) {
 TEST (ContourExtractor, ConvolutionHorizontal) {
     ContourExtractor extractor;
     Channel testImage = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},};
-    Channel filtered = extractor.detectHorizontalEdges(testImage);
+    Channel filtered = extractor.detectVerticalEdges(testImage);
     Channel test =  { {-19, -28, -32, -36, -29}, {-30, -40, -40, -40, -30}, {-30, -40, -40, -40, -30}, {34, 48, 52, 56, 44}};
     EXPECT_EQ(filtered, test);
 }
@@ -58,6 +58,9 @@ TEST (ContourExtractor, VerticalEdgeDetectorLenna) {
     //...saved
     cimg.save("../results/vertical_contour_lenna.jpeg");
 
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
+
 }
 
 TEST (ContourExtractor, HorizontalEdgeDetectorLenna) {
@@ -77,6 +80,9 @@ TEST (ContourExtractor, HorizontalEdgeDetectorLenna) {
 
     //...saved
     cimg.save("../results/horizontal_contour_lenna.jpeg");
+
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
 }
 
 TEST (ContourExtractor, AllEdgeDetectorLenna) {
@@ -95,6 +101,9 @@ TEST (ContourExtractor, AllEdgeDetectorLenna) {
     CImg<int> cimg = w.createGSImage(filtered);
 
     cimg.save("../results/contour_lenna.jpeg");
+
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
 }
 
 TEST (ContourExtractor, VerticalEdgeDetectorMandrill) {
@@ -108,6 +117,9 @@ TEST (ContourExtractor, VerticalEdgeDetectorMandrill) {
     CImg<int> cimg = w.createGSImage(filtered);
 
     cimg.save("../results/vertical_contour_mandrill.png");
+
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
 }
 
 
@@ -122,6 +134,9 @@ TEST (ContourExtractor, HorizontalEdgeDetectorMandrill) {
     CImg<int> cimg = w.createGSImage(filtered);
 
     cimg.save("../results/horizontal_contour_mandrill.png");
+
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
 }
 
 TEST (ContourExtractor, AllEdgeDetectorMandrill) {
@@ -135,6 +150,10 @@ TEST (ContourExtractor, AllEdgeDetectorMandrill) {
     CImg<int> cimg = w.createGSImage(filtered);
 
     cimg.save("../results/contour_mandrill.jpeg");
+
+
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
 }
 TEST (ContourExtractor, AllEdgeDetectorFruits) {
     //Visual test
@@ -145,6 +164,10 @@ TEST (ContourExtractor, AllEdgeDetectorFruits) {
     Channel image = r.convertColoredToGS("../images/fruits.png");
     Channel filtered = c.detectAllEdges(image);
     CImg<int> cimg = w.createGSImage(filtered);
+
+
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
 
     cimg.save("../results/contour_fruits.jpeg");
 }
@@ -159,7 +182,43 @@ TEST (ContourExtractor, AllEdgeDetectorGirl) {
     Channel filtered = c.detectAllEdges(image);
     CImg<int> cimg = w.createGSImage(filtered);
 
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
+
     cimg.save("../results/contour_girl.jpeg");
+}
+
+TEST (ContourExtractor, VerticalEdgeDetectorLich) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.convertColoredToGS("../images/lich.png");
+    Channel filtered = c.detectVerticalEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/vertical_contour_lich.png");
+
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
+}
+
+
+TEST (ContourExtractor, HorizontalEdgeDetectorLich) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.convertColoredToGS("../images/lich.png");
+    Channel filtered = c.detectHorizontalEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/horizontal_contour_lich.png");
+
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
 }
 
 TEST (ContourExtractor, AllEdgeDetectorLich) {
@@ -171,6 +230,9 @@ TEST (ContourExtractor, AllEdgeDetectorLich) {
     Channel image = r.convertColoredToGS("../images/lich.png");
     Channel filtered = c.detectAllEdges(image);
     CImg<int> cimg = w.createGSImage(filtered);
+
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
 
     cimg.save("../results/contour_lich.jpeg");
 }
@@ -185,6 +247,9 @@ TEST (ContourExtractor, AllEdgeDetectorMonarch) {
     Channel filtered = c.detectAllEdges(image);
     CImg<int> cimg = w.createGSImage(filtered);
 
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
+
     cimg.save("../results/contour_monarch.jpeg");
 }
 
@@ -198,7 +263,26 @@ TEST (ContourExtractor, AllEdgeDetectorTulips) {
     Channel filtered = c.detectAllEdges(image);
     CImg<int> cimg = w.createGSImage(filtered);
 
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
+
     cimg.save("../results/contour_tulips.jpeg");
+}
+
+TEST (ContourExtractor, AllEdgeDetectorMountain) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.loadGSImage("../images/mountain.png");
+    Channel filtered = c.detectAllEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    EXPECT_EQ(image.size(), filtered.size());
+    EXPECT_EQ(image[0].size(), filtered[0].size());
+
+    cimg.save("../results/contour_mountain.jpeg");
 }
 
 int main(int argc, char **argv) {

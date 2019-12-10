@@ -17,7 +17,7 @@ int main() {
     int n;
     vector<string> files = {"lenna.jpeg", "mandrill.png", "fruits.png", "girl.png", "lich.png",
                             "monarch.png", "mountain.png", "pool.png", "sails.png", "serrano.png",
-                            "tulips.png", "bridge.jpg", "cameraman.jpg", "airplane.jpg" , "sweden.jpg",
+                            "tulips.png", "bridge.jpg", "cameraman.jpg", "airplane.jpg" , "sweden.jpeg",
                             "house.jpg", "fruits.jpg", "tulips.png"};
 
     cout << "Choose a test image from the images folder:" << endl;

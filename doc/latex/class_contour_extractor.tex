@@ -1,0 +1,136 @@
+\hypertarget{class_contour_extractor}{}\section{Contour\+Extractor Class Reference}
+\label{class_contour_extractor}\index{Contour\+Extractor@{Contour\+Extractor}}
+
+
+Contour\+Extraction class.  
+
+
+
+
+{\ttfamily \#include $<$Contour\+Extractor.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_contour_extractor_ad0370155907a30ec5763f447987a0f5c}\label{class_contour_extractor_ad0370155907a30ec5763f447987a0f5c}} 
+\hyperlink{class_contour_extractor_ad0370155907a30ec5763f447987a0f5c}{Contour\+Extractor} ()
+\begin{DoxyCompactList}\small\item\em A default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_contour_extractor_a68a81d44d414657b4fd8d470416e8ff4}\label{class_contour_extractor_a68a81d44d414657b4fd8d470416e8ff4}} 
+\hyperlink{class_contour_extractor_a68a81d44d414657b4fd8d470416e8ff4}{$\sim$\+Contour\+Extractor} ()
+\begin{DoxyCompactList}\small\item\em A destructor. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_contour_extractor_a9c75f77327e9b74e3161963c4784d205}{preprocess} (Channel image) const
+\begin{DoxyCompactList}\small\item\em Adds a padding of 0-\/values all around the image, prepares the image for convolution. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_contour_extractor_a3aafc89132984a7b7042f748439b58fb}{detect\+Vertical\+Edges} (Channel image) const
+\begin{DoxyCompactList}\small\item\em Extracts vertical contours of an image. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_contour_extractor_af99fc045e0745f2b4244ad43822a7a1d}{detect\+Horizontal\+Edges} (Channel image) const
+\begin{DoxyCompactList}\small\item\em Extracts horizontal contours of an image. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_contour_extractor_a4a8d3597e99dcc90a62cb493bed0795d}{convolution} (Channel image, std\+::vector$<$ std\+::vector$<$ double $>$$>$ filter) const
+\begin{DoxyCompactList}\small\item\em Applies convolution between an image and a filter. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_contour_extractor_a0f85a3798530781e5c20b845df1677eb}{detect\+All\+Edges} (Channel image) const
+\begin{DoxyCompactList}\small\item\em Extracts contours of an image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contour\+Extraction class. 
+
+Implements the Sobel filter to extract contours of an image 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_contour_extractor_a4a8d3597e99dcc90a62cb493bed0795d}\label{class_contour_extractor_a4a8d3597e99dcc90a62cb493bed0795d}} 
+\index{Contour\+Extractor@{Contour\+Extractor}!convolution@{convolution}}
+\index{convolution@{convolution}!Contour\+Extractor@{Contour\+Extractor}}
+\subsubsection{\texorpdfstring{convolution()}{convolution()}}
+{\footnotesize\ttfamily Channel Contour\+Extractor\+::convolution (\begin{DoxyParamCaption}\item[{Channel}]{image,  }\item[{std\+::vector$<$ std\+::vector$<$ double $>$$>$}]{filter }\end{DoxyParamCaption}) const}
+
+
+
+Applies convolution between an image and a filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter,a} & 2d vector of double \\
+\hline
+{\em image,the} & image to be convoluted with the filter, a Channel \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel, the image convoluted 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_contour_extractor_a0f85a3798530781e5c20b845df1677eb}\label{class_contour_extractor_a0f85a3798530781e5c20b845df1677eb}} 
+\index{Contour\+Extractor@{Contour\+Extractor}!detect\+All\+Edges@{detect\+All\+Edges}}
+\index{detect\+All\+Edges@{detect\+All\+Edges}!Contour\+Extractor@{Contour\+Extractor}}
+\subsubsection{\texorpdfstring{detect\+All\+Edges()}{detectAllEdges()}}
+{\footnotesize\ttfamily Channel Contour\+Extractor\+::detect\+All\+Edges (\begin{DoxyParamCaption}\item[{Channel}]{image }\end{DoxyParamCaption}) const}
+
+
+
+Extracts contours of an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & a Channel, the input image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel, the output image representing the contours of the input 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_contour_extractor_af99fc045e0745f2b4244ad43822a7a1d}\label{class_contour_extractor_af99fc045e0745f2b4244ad43822a7a1d}} 
+\index{Contour\+Extractor@{Contour\+Extractor}!detect\+Horizontal\+Edges@{detect\+Horizontal\+Edges}}
+\index{detect\+Horizontal\+Edges@{detect\+Horizontal\+Edges}!Contour\+Extractor@{Contour\+Extractor}}
+\subsubsection{\texorpdfstring{detect\+Horizontal\+Edges()}{detectHorizontalEdges()}}
+{\footnotesize\ttfamily Channel Contour\+Extractor\+::detect\+Horizontal\+Edges (\begin{DoxyParamCaption}\item[{Channel}]{image }\end{DoxyParamCaption}) const}
+
+
+
+Extracts horizontal contours of an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & a Channel, the input image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel, the output image representing the horizontal contours of the input 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_contour_extractor_a3aafc89132984a7b7042f748439b58fb}\label{class_contour_extractor_a3aafc89132984a7b7042f748439b58fb}} 
+\index{Contour\+Extractor@{Contour\+Extractor}!detect\+Vertical\+Edges@{detect\+Vertical\+Edges}}
+\index{detect\+Vertical\+Edges@{detect\+Vertical\+Edges}!Contour\+Extractor@{Contour\+Extractor}}
+\subsubsection{\texorpdfstring{detect\+Vertical\+Edges()}{detectVerticalEdges()}}
+{\footnotesize\ttfamily Channel Contour\+Extractor\+::detect\+Vertical\+Edges (\begin{DoxyParamCaption}\item[{Channel}]{image }\end{DoxyParamCaption}) const}
+
+
+
+Extracts vertical contours of an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & a Channel, the input image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel, the output image representing the vertical contours of the input 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_contour_extractor_a9c75f77327e9b74e3161963c4784d205}\label{class_contour_extractor_a9c75f77327e9b74e3161963c4784d205}} 
+\index{Contour\+Extractor@{Contour\+Extractor}!preprocess@{preprocess}}
+\index{preprocess@{preprocess}!Contour\+Extractor@{Contour\+Extractor}}
+\subsubsection{\texorpdfstring{preprocess()}{preprocess()}}
+{\footnotesize\ttfamily Channel Contour\+Extractor\+::preprocess (\begin{DoxyParamCaption}\item[{Channel}]{image }\end{DoxyParamCaption}) const}
+
+
+
+Adds a padding of 0-\/values all around the image, prepares the image for convolution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & a Channel, the image to be padded \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel, the padded image 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Sofia/\+Documents/\+E\+P\+F\+L/\+M\+A1/\+Image-\/sound-\/processing/src/Contour\+Extractor.\+h\item 
+/\+Users/\+Sofia/\+Documents/\+E\+P\+F\+L/\+M\+A1/\+Image-\/sound-\/processing/src/Contour\+Extractor.\+cpp\end{DoxyCompactItemize}

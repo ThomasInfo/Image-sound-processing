@@ -69,6 +69,19 @@ TEST (ReaderTest, RGBChannelsAreLoaded) {
 
 }
 
+TEST (ReaderTest, convertColoredToGSWorks) {
+    Reader r;
+
+    Channel image = r.convertColoredToGS("../images/mandrill.png");
+
+    //Correct height
+    EXPECT_EQ(image.size(),480);
+    //Correct width
+    EXPECT_EQ(image[0].size(),480);
+
+
+}
+
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

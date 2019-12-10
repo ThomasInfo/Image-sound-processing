@@ -6,6 +6,7 @@
 #include "gtest/gtest.h"
 #include "../src/FFT.h"
 
+
 using namespace std;
 
 TEST (FFTTest, GreyScaleFFTIsComputed) {
@@ -14,7 +15,7 @@ TEST (FFTTest, GreyScaleFFTIsComputed) {
     Reader r;
     Channel image = r.loadGSImage("../images/lenna.jpeg");
 
-    FourierTransform GS_FFT = FastFourierTransform2D(image);
+    FourierTransform GS_FFT = FastFourierTransform2D(image, 1);
     vector<vector<double >> GS_FFT_modulus = FastFourierModulus(GS_FFT);
 
     //Correct height
@@ -36,9 +37,9 @@ TEST (FFTTest, ColorsFFTAreComputed) {
     Channel green = r.extractGreenChannel("../images/mandrill.png");
     Channel blue = r.extractBlueChannel("../images/mandrill.png");
 
-    FourierTransform red_FFT = FastFourierTransform2D(red);
-    FourierTransform green_FFT = FastFourierTransform2D(green);
-    FourierTransform blue_FFT = FastFourierTransform2D(blue);
+    FourierTransform red_FFT = FastFourierTransform2D(red, 1);
+    FourierTransform green_FFT = FastFourierTransform2D(green, 1);
+    FourierTransform blue_FFT = FastFourierTransform2D(blue, 1);
 
     vector<vector<double>> red_FFT_modulus = FastFourierModulus(red_FFT);
     vector<vector<double>> green_FFT_modulus = FastFourierModulus(green_FFT);
@@ -78,7 +79,7 @@ TEST (FFTTest, BlackFFTIsRight) {
 
     Channel black_image(10, vector<int>(10, 0)); // creating a black greyscale image Channel
 
-    FourierTransform black_FFT = FastFourierTransform2D(black_image);
+    FourierTransform black_FFT = FastFourierTransform2D(black_image, 1);
     vector<vector<double >> black_FFT_modulus = FastFourierModulus(black_FFT);
 
     // correct computation of the Fast Fourier Transform and its modulus
@@ -96,8 +97,14 @@ TEST (FFTTest, BlackFFTIsRight) {
 TEST (FTTTest, FFTIsRight) {
 
     Channel channel = {{1, 9, 6, 5}, {24, -5, 3, 13}, {8, 0, 1, 7}};
-    FourierTransform solution = {{(72.,0), (23+21j), (14-7.225416114969383e-15j), (23.00000000000001-21.000000000000004j)], [(-4.500000000000001-16.454482671904337j), (-9.473720558371165-28.62435565298214j), (-17.49999999999999-14.722431864335451j), (-28.52627944162884+4.375644347017843j)], [(-4.5000000000000036+16.45448267190432j), (-28.5262794416288-4.37564434701787j), (-17.50000000000001+14.722431864335459j), (-9.473720558371188+28.62435565298214j)]]
+    FourierTransform solution = {{(72,0), (23,21), (14,0), (23,-21)}, {(-4.5,-16.45), (-9.47,-28.62), (-17.5,-14.72), (-28.53,4.38)}, {(-4.5,16.45), (-28.53,-4.38), (-17.5,14.72), (-9.47,28.62)}};
+    FourierTransform FFT2D = FastFourierTransform2D(channel, 1);
 
+    for ( int k = 0; k < 10; k++) {
+        for (int l = 0; l < 10; l++) {
+            EXPECT_LT(norm(FFT2D[k][l]-solution[k][l]), 0.1);
+        }
+    }
 }
 
 

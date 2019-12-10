@@ -45,8 +45,8 @@ TEST (ReaderTest, MountainIsLoaded) {
 
 
 TEST (ReaderTest, RGBChannelsAreLoaded) {
-    Reader r;
 
+    Reader r;
     Channel red = r.extractRedChannel("../images/mandrill.png");
     Channel green = r.extractGreenChannel("../images/mandrill.png");
     Channel blue = r.extractBlueChannel("../images/mandrill.png");

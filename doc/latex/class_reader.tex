@@ -1,0 +1,214 @@
+\hypertarget{class_reader}{}\section{Reader Class Reference}
+\label{class_reader}\index{Reader@{Reader}}
+
+
+\hyperlink{class_reader}{Reader} class.  
+
+
+
+
+{\ttfamily \#include $<$Reader.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_reader_adcda31b507720ab44044d7a21686fba2}\label{class_reader_adcda31b507720ab44044d7a21686fba2}} 
+\hyperlink{class_reader_adcda31b507720ab44044d7a21686fba2}{Reader} ()
+\begin{DoxyCompactList}\small\item\em A default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_reader_a78089542fd27a0ac2df6702fffe8725c}\label{class_reader_a78089542fd27a0ac2df6702fffe8725c}} 
+\hyperlink{class_reader_a78089542fd27a0ac2df6702fffe8725c}{$\sim$\+Reader} ()
+\begin{DoxyCompactList}\small\item\em A destructor. \end{DoxyCompactList}\item 
+C\+Img$<$ int $>$ \hyperlink{class_reader_a221d27e101af9d6a72f83099004f3aec}{load\+C\+Img} (std\+::string filename) const
+\begin{DoxyCompactList}\small\item\em Loads a C\+Img image. \end{DoxyCompactList}\item 
+R\+G\+B\+Image \hyperlink{class_reader_a107ec6bb4a34d2a865f9f27ea7768f15}{load\+R\+G\+B\+Image} (std\+::string filename) const
+\begin{DoxyCompactList}\small\item\em Loads an R\+GB image into a 1 or 3-\/channelled 2D vector of int. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_reader_abe384ab426fbb3ab2345537072771b5f}{load\+G\+S\+Image} (std\+::string filename) const
+\begin{DoxyCompactList}\small\item\em Loads a greyscale image into a 2D vector of int. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_reader_a4d52dd9aeabc2888b551c9f05c4b6099}{extract\+Red\+Channel} (std\+::string filename) const
+\begin{DoxyCompactList}\small\item\em Extracts the red channel of an image. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_reader_a46e2de91ea642d5749eaf7c74f0a1381}{extract\+Blue\+Channel} (std\+::string filename) const
+\begin{DoxyCompactList}\small\item\em Extracts the green channel of an image. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_reader_a8a723ec9b5bebd04143b59e71f68c72a}{extract\+Green\+Channel} (std\+::string filename) const
+\begin{DoxyCompactList}\small\item\em Extracts the blue channel of an image. \end{DoxyCompactList}\item 
+R\+G\+B\+Image \hyperlink{class_reader_a1dc6b358f453ec604eec390ea7f67cbd}{convert\+Image} (C\+Img$<$ int $>$ c\+Img) const
+\begin{DoxyCompactList}\small\item\em Converts a C\+Img type into 1 or 3-\/channelled 2D image. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_reader_aaf0f51acf4b34b71e03eb2b11c1b6a16}{convert\+Channel} (C\+Img$<$ int $>$ c\+Img) const
+\begin{DoxyCompactList}\small\item\em Converts a C\+Img type into a channel. \end{DoxyCompactList}\item 
+Channel \hyperlink{class_reader_a4cb62495bbc5180292a263655243a30a}{convert\+Colored\+To\+GS} (std\+::string filename) const
+\begin{DoxyCompactList}\small\item\em Loads an R\+GB image as a GS image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_reader}{Reader} class. 
+
+To load and manipulate P\+N\+G/\+J\+P\+EG images 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_reader_aaf0f51acf4b34b71e03eb2b11c1b6a16}\label{class_reader_aaf0f51acf4b34b71e03eb2b11c1b6a16}} 
+\index{Reader@{Reader}!convert\+Channel@{convert\+Channel}}
+\index{convert\+Channel@{convert\+Channel}!Reader@{Reader}}
+\subsubsection{\texorpdfstring{convert\+Channel()}{convertChannel()}}
+{\footnotesize\ttfamily Channel Reader\+::convert\+Channel (\begin{DoxyParamCaption}\item[{C\+Img$<$ int $>$}]{c\+Img }\end{DoxyParamCaption}) const}
+
+
+
+Converts a C\+Img type into a channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c\+Img,to} & be converted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reader_a4cb62495bbc5180292a263655243a30a}\label{class_reader_a4cb62495bbc5180292a263655243a30a}} 
+\index{Reader@{Reader}!convert\+Colored\+To\+GS@{convert\+Colored\+To\+GS}}
+\index{convert\+Colored\+To\+GS@{convert\+Colored\+To\+GS}!Reader@{Reader}}
+\subsubsection{\texorpdfstring{convert\+Colored\+To\+G\+S()}{convertColoredToGS()}}
+{\footnotesize\ttfamily Channel Reader\+::convert\+Colored\+To\+GS (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption}) const}
+
+
+
+Loads an R\+GB image as a GS image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename,the} & path of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel, the image converted to greyscale 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reader_a1dc6b358f453ec604eec390ea7f67cbd}\label{class_reader_a1dc6b358f453ec604eec390ea7f67cbd}} 
+\index{Reader@{Reader}!convert\+Image@{convert\+Image}}
+\index{convert\+Image@{convert\+Image}!Reader@{Reader}}
+\subsubsection{\texorpdfstring{convert\+Image()}{convertImage()}}
+{\footnotesize\ttfamily R\+G\+B\+Image Reader\+::convert\+Image (\begin{DoxyParamCaption}\item[{C\+Img$<$ int $>$}]{c\+Img }\end{DoxyParamCaption}) const}
+
+
+
+Converts a C\+Img type into 1 or 3-\/channelled 2D image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c\+Img,to} & be converted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an Image 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reader_a46e2de91ea642d5749eaf7c74f0a1381}\label{class_reader_a46e2de91ea642d5749eaf7c74f0a1381}} 
+\index{Reader@{Reader}!extract\+Blue\+Channel@{extract\+Blue\+Channel}}
+\index{extract\+Blue\+Channel@{extract\+Blue\+Channel}!Reader@{Reader}}
+\subsubsection{\texorpdfstring{extract\+Blue\+Channel()}{extractBlueChannel()}}
+{\footnotesize\ttfamily Channel Reader\+::extract\+Blue\+Channel (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption}) const}
+
+
+
+Extracts the green channel of an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & a string, the path of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reader_a8a723ec9b5bebd04143b59e71f68c72a}\label{class_reader_a8a723ec9b5bebd04143b59e71f68c72a}} 
+\index{Reader@{Reader}!extract\+Green\+Channel@{extract\+Green\+Channel}}
+\index{extract\+Green\+Channel@{extract\+Green\+Channel}!Reader@{Reader}}
+\subsubsection{\texorpdfstring{extract\+Green\+Channel()}{extractGreenChannel()}}
+{\footnotesize\ttfamily Channel Reader\+::extract\+Green\+Channel (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption}) const}
+
+
+
+Extracts the blue channel of an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & a string, the path of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reader_a4d52dd9aeabc2888b551c9f05c4b6099}\label{class_reader_a4d52dd9aeabc2888b551c9f05c4b6099}} 
+\index{Reader@{Reader}!extract\+Red\+Channel@{extract\+Red\+Channel}}
+\index{extract\+Red\+Channel@{extract\+Red\+Channel}!Reader@{Reader}}
+\subsubsection{\texorpdfstring{extract\+Red\+Channel()}{extractRedChannel()}}
+{\footnotesize\ttfamily Channel Reader\+::extract\+Red\+Channel (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption}) const}
+
+
+
+Extracts the red channel of an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & a string, the path of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reader_a221d27e101af9d6a72f83099004f3aec}\label{class_reader_a221d27e101af9d6a72f83099004f3aec}} 
+\index{Reader@{Reader}!load\+C\+Img@{load\+C\+Img}}
+\index{load\+C\+Img@{load\+C\+Img}!Reader@{Reader}}
+\subsubsection{\texorpdfstring{load\+C\+Img()}{loadCImg()}}
+{\footnotesize\ttfamily C\+Img$<$ int $>$ Reader\+::load\+C\+Img (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption}) const}
+
+
+
+Loads a C\+Img image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & a string, the path of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an image in the C\+Img$<$int$>$ format 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reader_abe384ab426fbb3ab2345537072771b5f}\label{class_reader_abe384ab426fbb3ab2345537072771b5f}} 
+\index{Reader@{Reader}!load\+G\+S\+Image@{load\+G\+S\+Image}}
+\index{load\+G\+S\+Image@{load\+G\+S\+Image}!Reader@{Reader}}
+\subsubsection{\texorpdfstring{load\+G\+S\+Image()}{loadGSImage()}}
+{\footnotesize\ttfamily Channel Reader\+::load\+G\+S\+Image (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption}) const}
+
+
+
+Loads a greyscale image into a 2D vector of int. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & a string, the path of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Channel 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reader_a107ec6bb4a34d2a865f9f27ea7768f15}\label{class_reader_a107ec6bb4a34d2a865f9f27ea7768f15}} 
+\index{Reader@{Reader}!load\+R\+G\+B\+Image@{load\+R\+G\+B\+Image}}
+\index{load\+R\+G\+B\+Image@{load\+R\+G\+B\+Image}!Reader@{Reader}}
+\subsubsection{\texorpdfstring{load\+R\+G\+B\+Image()}{loadRGBImage()}}
+{\footnotesize\ttfamily R\+G\+B\+Image Reader\+::load\+R\+G\+B\+Image (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption}) const}
+
+
+
+Loads an R\+GB image into a 1 or 3-\/channelled 2D vector of int. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & a string, the path of the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an Image 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Sofia/\+Documents/\+E\+P\+F\+L/\+M\+A1/\+Image-\/sound-\/processing/src/Reader.\+h\item 
+/\+Users/\+Sofia/\+Documents/\+E\+P\+F\+L/\+M\+A1/\+Image-\/sound-\/processing/src/Reader.\+cpp\end{DoxyCompactItemize}

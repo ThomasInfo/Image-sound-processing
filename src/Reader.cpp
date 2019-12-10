@@ -76,10 +76,12 @@ Channel Reader::convertChannel (CImg <int> cImg) const {
 
     assert(lines > 0);
     assert (columns > 0);
-    Channel image (lines, vector<int>(columns));
+    //Channel image (lines, vector<int>(columns));
 
-    for(size_t i(0); i < lines; i++) {
-        for (size_t j(0); j < columns; ++j) {
+    Channel image (columns, vector<int>(lines));
+
+    for(size_t i(0); i < columns; i++) {
+        for (size_t j(0); j < lines; ++j) {
                 image[i][j] = cImg(i,j);
         }
     }
@@ -97,6 +99,10 @@ Channel Reader::convertColoredToGS (std::string filename) const {
 
     assert(l>0);
     assert(c>0);
+    assert(blue.size()>0);
+    assert(blue[0].size()>0);
+    assert(green.size()>0);
+    assert(green[0].size()>0);
 
     Channel greyscale (l, vector <int> (c));
 

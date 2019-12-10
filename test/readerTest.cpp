@@ -19,7 +19,7 @@ TEST (ReaderTest, RGBImageIsLoaded) {
     EXPECT_EQ(image[0][0].size(),3);
 }
 
-TEST (ReaderTest, GreyScaleImageIsLoaded) {
+TEST (ReaderTest, LennaIsLoaded) {
 
     Reader r;
     Channel image = r.loadGSImage("../images/lenna.jpeg");
@@ -30,6 +30,19 @@ TEST (ReaderTest, GreyScaleImageIsLoaded) {
     EXPECT_EQ(image[0].size(),512);
 
 }
+
+TEST (ReaderTest, MountainIsLoaded) {
+
+    Reader r;
+    Channel image = r.loadGSImage("../images/mountain.png");
+
+    //Correct height
+    EXPECT_EQ(image.size(),640);
+    //Correct width
+    EXPECT_EQ(image[0].size(),480);
+
+}
+
 
 TEST (ReaderTest, RGBChannelsAreLoaded) {
 

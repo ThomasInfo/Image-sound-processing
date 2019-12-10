@@ -12,6 +12,7 @@
 typedef std::complex<double> Complex;
 typedef std::vector<std::vector<Complex>> FourierTransform;
 
+FourierTransform DiscreteFourierTransform(Channel channel);
 FourierTransform FastFourierTransform(Channel channel);
 std::vector<std::vector<double>> FastFourierModulus(FourierTransform FFT);
 

@@ -382,7 +382,7 @@
 #endif*/
 
 #ifndef cimg_display
-#define cimg_display 1
+#define cimg_display 0
 #endif
 
 // Include display-specific headers.
@@ -439,6 +439,9 @@
 #define _cimg_cap_prop_frame_count CV_CAP_PROP_FRAME_COUNT
 #endif
 #endif
+
+#define cimg_use_png 1
+#define cimg_use_jpeg 1
 
 // Configure LibPNG support.
 // (http://www.libpng.org)

@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "Histogram.h"
+#include <cassert>
 
 using namespace std;
 
@@ -12,6 +13,9 @@ Image_Histogram Histogram::compute_Image_Histogram(RGBImage image) const {
     int nb_lines = image.size();
     int nb_columns = image[0].size();
     Image_Histogram image_histo(256, vector<vector<int>>(256, vector<int>(256)));
+
+    assert (nb_lines > 0);
+    assert (nb_columns > 0);
 
     for ( int nx = 0; nx < nb_lines; nx++) {
         for ( int ny = 0; ny < nb_columns; ny++) {
@@ -30,6 +34,9 @@ Channel_Histogram Histogram::compute_Channel_Histogram(Channel channel) const {
     int nb_lines = channel.size();
     int nb_columns = channel[0].size();
     Channel_Histogram channel_histo(256);
+
+    assert (nb_lines > 0);
+    assert (nb_columns > 0);
 
     for ( int nx = 0; nx < nb_lines; nx++) {
         for ( int ny = 0; ny < nb_columns; ny++) {

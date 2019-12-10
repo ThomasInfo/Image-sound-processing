@@ -4,6 +4,8 @@
 
 #include "gtest/gtest.h"
 #include "../src/ContourExtractor.h"
+#include "../src/Writer.h"
+#include "../src/Reader.h"
 
 using namespace std;
 
@@ -14,7 +16,7 @@ TEST (ContourExtractorTest, ZeroPadding) {
     Channel test = { {0, 0, 0, 0, 0}, {0, 1, 2, 3, 0}, {0, 4, 5, 6, 0}, {0, 7, 8, 9, 0}, {0, 10, 11, 12, 0}, {0, 0, 0, 0, 0} };
     EXPECT_EQ(padded, test);
 }
-TEST (ContourExtractor, VerticalEdgeDetector) {
+TEST (ContourExtractor, ConvolutionVertical) {
     ContourExtractor extractor;
     Channel testImage = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},};
     Channel filtered = extractor.detectVerticalEdges(testImage);
@@ -22,7 +24,7 @@ TEST (ContourExtractor, VerticalEdgeDetector) {
     EXPECT_EQ(filtered, test);
 }
 
-TEST (ContourExtractor, HorizontalEdgeDetector) {
+TEST (ContourExtractor, ConvolutionHorizontal) {
     ContourExtractor extractor;
     Channel testImage = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},};
     Channel filtered = extractor.detectHorizontalEdges(testImage);
@@ -30,7 +32,7 @@ TEST (ContourExtractor, HorizontalEdgeDetector) {
     EXPECT_EQ(filtered, test);
 }
 
-TEST (ContourExtractor, AllEdgeDetector) {
+TEST (ContourExtractor, ConvolutionAllEdge) {
     ContourExtractor extractor;
     Channel testImage = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},};
     Channel filtered = extractor.detectAllEdges(testImage);
@@ -38,6 +40,166 @@ TEST (ContourExtractor, AllEdgeDetector) {
     EXPECT_EQ(filtered, test);
 }
 
+TEST (ContourExtractor, VerticalEdgeDetectorLenna) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    //Greyscale image is loaded from a CImg...
+    Channel image = r.loadGSImage("../images/lenna.jpeg");
+
+    //...filtered...
+    Channel filtered = c.detectVerticalEdges(image);
+
+    //... written back into a Cimg...
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    //...saved
+    cimg.save("../results/vertical_contour_lenna.jpeg");
+
+}
+
+TEST (ContourExtractor, HorizontalEdgeDetectorLenna) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    //Greyscale image is loaded from a CImg...
+    Channel image = r.loadGSImage("../images/lenna.jpeg");
+
+    //...filtered...
+    Channel filtered = c.detectHorizontalEdges(image);
+
+    //... written back into a Cimg...
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    //...saved
+    cimg.save("../results/horizontal_contour_lenna.jpeg");
+}
+
+TEST (ContourExtractor, AllEdgeDetectorLenna) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    //Greyscale image is loaded from a CImg...
+    Channel image = r.loadGSImage("../images/lenna.jpeg");
+
+    //...filtered...
+    Channel filtered = c.detectAllEdges(image);
+
+    //...saved
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/contour_lenna.jpeg");
+}
+
+TEST (ContourExtractor, VerticalEdgeDetectorMandrill) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.convertColoredToGS("../images/mandrill.png");
+    Channel filtered = c.detectVerticalEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/vertical_contour_mandrill.png");
+}
+
+
+TEST (ContourExtractor, HorizontalEdgeDetectorMandrill) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.convertColoredToGS("../images/mandrill.png");
+    Channel filtered = c.detectHorizontalEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/horizontal_contour_mandrill.png");
+}
+
+TEST (ContourExtractor, AllEdgeDetectorMandrill) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.convertColoredToGS("../images/mandrill.png");
+    Channel filtered = c.detectAllEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/contour_mandrill.jpeg");
+}
+TEST (ContourExtractor, AllEdgeDetectorFruits) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.convertColoredToGS("../images/fruits.png");
+    Channel filtered = c.detectAllEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/contour_fruits.jpeg");
+}
+
+TEST (ContourExtractor, AllEdgeDetectorGirl) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.convertColoredToGS("../images/girl.png");
+    Channel filtered = c.detectAllEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/contour_girl.jpeg");
+}
+
+TEST (ContourExtractor, AllEdgeDetectorLich) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.convertColoredToGS("../images/lich.png");
+    Channel filtered = c.detectAllEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/contour_lich.jpeg");
+}
+
+TEST (ContourExtractor, AllEdgeDetectorMonarch) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.convertColoredToGS("../images/monarch.png");
+    Channel filtered = c.detectAllEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/contour_monarch.jpeg");
+}
+
+TEST (ContourExtractor, AllEdgeDetectorTulips) {
+    //Visual test
+    Reader r;
+    ContourExtractor c;
+    Writer w;
+
+    Channel image = r.convertColoredToGS("../images/tulips.png");
+    Channel filtered = c.detectAllEdges(image);
+    CImg<int> cimg = w.createGSImage(filtered);
+
+    cimg.save("../results/contour_tulips.jpeg");
+}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

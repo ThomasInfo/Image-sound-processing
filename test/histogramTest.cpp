@@ -121,10 +121,10 @@ TEST (HistogramTest, ImageHistogramCountsAreRight) {
     Channel_Histogram green_histo = h.compute_Channel_Histogram(green);
     Channel_Histogram blue_histo = h.compute_Channel_Histogram(blue);
 
-    int RGB_pixels_count 0;
-    int red_pixels_count 0;
-    int green_pixels_count 0;
-    int blue_pixels_count 0;
+    int RGB_pixels_count = 0;
+    int red_pixels_count = 0;
+    int green_pixels_count = 0;
+    int blue_pixels_count = 0;
 
     //Correct count of pixels
     for ( int nred = 0; nred < 256; nred++) {
@@ -159,7 +159,7 @@ TEST (HistogramTest, ImageHistogramAndChannelHistogramsCorrespond) {
     Channel_Histogram blue_histo = h.compute_Channel_Histogram(blue);
 
     //Corresponding count of red pixels according to the intensity
-    int red_RGB_pixels_count 0;
+    int red_RGB_pixels_count = 0;
     for ( int nred = 0; nred < 256; nred++) {
         red_RGB_pixels_count = 0;
         for (int ngreen = 0; ngreen < 256; ngreen++) {
@@ -171,7 +171,7 @@ TEST (HistogramTest, ImageHistogramAndChannelHistogramsCorrespond) {
     }
 
     //Corresponding count of green pixels according to the intensity
-    int green_RGB_pixels_count 0;
+    int green_RGB_pixels_count = 0;
     for ( int ngreen = 0; ngreen < 256; ngreen++) {
         green_RGB_pixels_count = 0;
         for (int nred = 0; nred < 256; nred++) {
@@ -183,7 +183,7 @@ TEST (HistogramTest, ImageHistogramAndChannelHistogramsCorrespond) {
     }
 
     //Corresponding count of blue pixels according to the intensity
-    int blue_RGB_pixels_count 0;
+    int blue_RGB_pixels_count = 0;
     for ( int nblue = 0; nblue < 256; nblue++) {
         blue_RGB_pixels_count = 0;
         for (int nred = 0; nred < 256; nred++) {

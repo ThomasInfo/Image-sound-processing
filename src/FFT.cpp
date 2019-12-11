@@ -58,17 +58,12 @@ void FFT (ComplexVector& image) {
 
     size_t N = image.size();
     size_t M = image[0].size();
-    cout << "N = " << N << endl;
-    cout << "M = " << M << endl;
     if (N <= 1 and M <= 1) return;
 
     if (N%2 == 1) {
-        cout << "youyou" << endl;
         ComplexVector temp = image;
-        cout << "log" << pow(2, ceil(log2(N)));
         N = pow(2, ceil(log2(N)));
         M = pow(2, ceil(log2(N)));
-        cout << "changed" << N << " " << M << endl;
         ComplexVector padded (N, vector<Complex> (M, Complex(0,0)));
 
         image = padded;
@@ -141,28 +136,24 @@ void FFT (ComplexVector& image) {
 }
 
 void IFFT (ComplexVector& fft) {
-    // conjugate the complex numbers
+
+    // Using the property of FFT for real samples
+    conjugate(fft);
+    FFT(fft);
+    conjugate(fft);
+
+    for (int i(0); i < fft.size(); ++i) {
+        for (int j(0); j < fft[0].size(); ++j) {
+            fft[i][j] /= (fft.size()*fft[0].size());
+        }
+    }
+}
+
+void conjugate (ComplexVector& fft) {
     ComplexVector temp = fft;
     for (int i(0); i < fft.size(); ++i) {
         for (int j(0); j < fft[0].size(); ++j) {
             fft[i][j] = conj(temp[i][j]);
-        }
-    }
-
-    // forward fft
-    FFT(fft);
-
-    temp = fft;
-    for (int i(0); i < fft.size(); ++i) {
-        for (int j(0); j < fft[0].size(); ++j) {
-            fft[i][j] = conj(temp[i][j]);
-        }
-    }
-
-    // scale the numbers
-    for (int i(0); i < fft.size(); ++i) {
-        for (int j(0); j < fft[0].size(); ++j) {
-            fft[i][j] /= (fft.size()*fft[0].size());
         }
     }
 }

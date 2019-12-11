@@ -20,12 +20,4 @@ void FFT (ComplexVector& image);
 void IFFT (ComplexVector& fft);
 
 
-//ComplexVector DiscreteFourierTransform2D(Channel channel);
-//ComplexVector FastFourierTransform2D(Channel channel, int dir);
-//int FFT(int dir,int m,double *x,double *y);
-//int Powerof2(int n,int *m,int *twopm);
-
-
-
-
 #endif //IMAGE_PROCESSING_FFT_H

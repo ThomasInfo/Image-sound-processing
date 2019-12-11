@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['preprocess',['preprocess',['../class_contour_extractor.html#a9c75f77327e9b74e3161963c4784d205',1,'ContourExtractor']]]
+  ['iscolored',['isColored',['../class_run.html#acb7e1319ac1b8d82f932de967d31689d',1,'Run']]]
 ];

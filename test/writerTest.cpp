@@ -58,7 +58,7 @@ TEST (WriterTest, RGBImageIsWritten) {
 }
 
 TEST (WriterTest, RGBConvertedtoGS) {
-
+    //Visual test
     Reader r;
     Writer w;
     Channel image = r.convertColoredToGS("../images/mandrill.png");

@@ -8,33 +8,6 @@
 using namespace std;
 
 
-/*ComplexVector DiscreteFourierTransform2D(Channel channel) {
-
-    int nb_lines = channel.size();
-    int nb_columns = channel[0].size();
-    ComplexVector FFT2D(nb_lines, vector<Complex>(nb_columns));
-    Complex i = sqrt(-1);
-
-    assert (nb_lines > 0);
-    assert (nb_columns > 0);
-
-    for ( int k = 0; k < nb_lines; k++) {
-        for ( int l = 0; l < nb_columns; l++) {
-            Complex F_k_l(0.0, 0.0); // F[k,l] with F the Discrete Fourier Transform
-            for ( int nx = 0; nx < nb_lines; nx++) {
-                for ( int ny = 0; ny < nb_columns; ny++) {
-                    Complex angle = - 2 * i * M_PI * (nx * k / nb_lines + ny * l / nb_columns);
-                    F_k_l += channel[nx][ny] * exp(angle);
-                }
-            }
-            FFT2D[k][l] = F_k_l;
-        }
-    }
-
-    return FFT2D;
-}*/
-
-
 vector<vector<double>> FFTModulus(ComplexVector FFT) {
 
     int nb_lines = FFT.size();
@@ -107,12 +80,6 @@ void FFT (ComplexVector& image) {
         }
     }
 
-    //cout << "N = " << image.size() << endl;
-    //cout << "M = " << image[0].size() << endl;
-
-
-
-
     assert (N>0);
     assert (M> 0);
 
@@ -137,50 +104,11 @@ void FFT (ComplexVector& image) {
         }
     }
 
-    //cout << even_even.size() << endl;
-    //cout << even_even[0].size() << endl;
-    /*for (int i = 0; i < even_even.size(); ++i) {
-        for (int j = 0; j < even_even[0].size(); ++j) {
-            cout << even_even[i][j] << endl;
-        }
-    }*/
 
-    //cout << even_odd.size() << endl;
-    //cout << even_odd[0].size() << endl;
-    /*for (int i = 0; i < even_odd.size(); ++i) {
-        for (int j = 0; j < even_odd[0].size(); ++j) {
-            cout << even_odd[i][j] << endl;
-        }
-    }*/
-
-    //cout << odd_even.size() << endl;
-    //cout << odd_even[0].size();
-    /*for (int i = 0; i < odd_even.size(); ++i) {
-        for (int j = 0; j < odd_even[0].size(); ++j) {
-            cout << odd_even[i][j] << endl;
-        }
-    }*/
-
-    //cout << odd_odd.size() << endl;
-    //cout << odd_odd[0].size();
-    /*for (int i = 0; i < odd_odd.size(); ++i) {
-        for (int j = 0; j < odd_odd[0].size(); ++j) {
-            cout << odd_odd[i][j] << endl;
-        }
-    }*/
-
-
-    //cout << "even-even" << endl;
     FFT(even_even);
-    //cout << "even-odd" << endl;
     FFT(even_odd);
-    //cout << "odd-even" << endl;
     FFT(odd_even);
-    //cout << "odd-odd" << endl;
     FFT(odd_odd);
-
-    //cout << "base case"<< endl;
-
 
     double k = 0;
     double l = 0;
@@ -192,15 +120,6 @@ void FFT (ComplexVector& image) {
             Complex t = Complex(polar(1.0, -2 * M_PI * (k / N + l / M)) * Complex(odd_odd[n][m]));
             Complex t1 = Complex(polar(1.0, -2 * M_PI * (l / M)) * Complex(even_odd[n][m]));
             Complex t2 = Complex(polar(1.0, -2 * M_PI * (k / N)) * Complex(odd_even[n][m]));
-
-            /*cout << polar(1.0, -2 * M_PI * (n / N + m / M)) << odd_odd[n][m] << t << endl;
-            cout << polar(1.0, -2 * M_PI * (m / M)) << even_odd[n][m] << t1 << endl;
-            cout << polar(1.0, -2 * M_PI * (n / N)) << odd_even[n][m] << t2 << endl;*/
-
-
-            //cout << n << m << endl;
-
-            //if (N <=2 and M <=2) {
 
             ++l;
                 if (n%2 == 1) {
@@ -214,20 +133,6 @@ void FFT (ComplexVector& image) {
                     image[n + N / 2][m] = even_even[n][m] - t + t1 - t2;
                     image[n][m + M / 2] = even_even[n][m] - t - t1 + t2;
                 }
-            /*} else {
-
-                image[n][m] = even_even[n][m] - t + t1 - t2;
-                image[n + N / 2][m + M / 2] = even_even[n][m] - t - t1 + t2;
-                image[n + N / 2][m] = even_even[n][m] + t + t1 + t2;
-                image[n][m + M / 2] = even_even[n][m] + t - t1 - t2;
-            }*/
-
-            //cout << "[" << n << "][" << m << "]" << image[n][m] << endl;
-            //cout << "[" << n+N/2 << "][" << m+M/2 << "]" << image[n+N/2][m+M/2] << endl;
-            //cout << "[" << n+N/2 << "][" << m << "]" << image[n+N/2][m] << endl;
-            //cout << "[" << n << "][" << m+M/2 << "]" << image[n][m+M/2] << endl;
-
-
 
         }
         ++k;

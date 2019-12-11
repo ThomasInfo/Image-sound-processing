@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['_7econtourextractor',['~ContourExtractor',['../class_contour_extractor.html#a68a81d44d414657b4fd8d470416e8ff4',1,'ContourExtractor']]],
-  ['_7ehistogram',['~Histogram',['../class_histogram.html#aaf22daf3b8e3f0578337109005532f51',1,'Histogram']]],
-  ['_7ereader',['~Reader',['../class_reader.html#a78089542fd27a0ac2df6702fffe8725c',1,'Reader']]],
-  ['_7ewriter',['~Writer',['../class_writer.html#a6f57399b94731301d267ce10a2f52ea3',1,'Writer']]]
+  ['reader',['Reader',['../class_reader.html#adcda31b507720ab44044d7a21686fba2',1,'Reader']]],
+  ['run',['Run',['../class_run.html#ad9511732117430d7fcdc0c11796f0ef6',1,'Run::Run()'],['../class_run.html#a791a26dc9f036082e1fae6dbce7d8944',1,'Run::run(int process, bool color, std::string filepath)']]]
 ];

@@ -9,12 +9,12 @@
 /*! A Image_Histogram represents a 3D histogram of pixels intensity values for a color image.
  * It shows the number of pixels in an image at each different intensity value (red, green AND blue).
  * Each axe of the histogram represents a Channel_Histogram of one color: red, green or blue. */
-typedef std::vector <std::vector<std::vector<int>>> Image_Histogram;
+typedef std::vector <std::vector<std::vector<int>>> ImageHistogram;
 
 //! Typedef
 /*! A Channel_Histogram represents a 1D histogram of pixel intensity values, either for a greyscale image or only one color (red, green OR blue).
  * It shows the number of pixels in an image at each different intensity value (black, red, green, OR blue). */
-typedef std::vector<int> Channel_Histogram;
+typedef std::vector<int> ChannelHistogram;
 
 
 //! Histogram class
@@ -32,20 +32,20 @@ public:
     //! A destructor
     ~Histogram();
 
-    //! Compute an Image_Histogram from an Image
+    //! Compute an ImageHistogram from an Image
     /*!
      * @param an Image
-     * @return its Image_Histogram
+     * @return its ImageHistogram
      */
-    Image_Histogram compute_Image_Histogram(RGBImage) const;
+    ImageHistogram computeImageHistogram(RGBImage) const;
 
 
-    //! Compute a Channel_Histogram from a Channel
+    //! Compute a ChannelHistogram from a Channel
     /*!
      * @param a Channel
-     * @return its Channel_Histogram
+     * @return its ChannelHistogram
      */
-    Channel_Histogram compute_Channel_Histogram(Channel) const;
+    ChannelHistogram computeChannelHistogram(Channel) const;
 };
 
 

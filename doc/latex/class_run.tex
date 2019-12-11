@@ -1,0 +1,151 @@
+\hypertarget{class_run}{}\section{Run Class Reference}
+\label{class_run}\index{Run@{Run}}
+
+
+\hyperlink{class_run}{Run} class.  
+
+
+
+
+{\ttfamily \#include $<$Run.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_run_ad9511732117430d7fcdc0c11796f0ef6}\label{class_run_ad9511732117430d7fcdc0c11796f0ef6}} 
+\hyperlink{class_run_ad9511732117430d7fcdc0c11796f0ef6}{Run} ()
+\begin{DoxyCompactList}\small\item\em A default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_run_a7fa0ac1770a5067113aaa1928be3d742}\label{class_run_a7fa0ac1770a5067113aaa1928be3d742}} 
+\hyperlink{class_run_a7fa0ac1770a5067113aaa1928be3d742}{$\sim$\+Run} ()
+\begin{DoxyCompactList}\small\item\em A destructor. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_run_aa5f70a3b468b1fc5eeb06e5300d6fdb2}{choose\+Image\+Path} ()
+\begin{DoxyCompactList}\small\item\em Asks the user to choose an image to process. \end{DoxyCompactList}\item 
+bool \hyperlink{class_run_acb7e1319ac1b8d82f932de967d31689d}{is\+Colored} ()
+\begin{DoxyCompactList}\small\item\em Asks the user if the image is in R\+GB or greyscale (will be processed differently) \end{DoxyCompactList}\item 
+int \hyperlink{class_run_a5493b768fdf04b773ab5a2ddcec8d805}{ask\+User} ()
+\begin{DoxyCompactList}\small\item\em Asks the user if he wants to compute an histogram, compute the Fast Fourier Transform or extract contours. \end{DoxyCompactList}\item 
+void \hyperlink{class_run_a791a26dc9f036082e1fae6dbce7d8944}{run} (int process, bool color, std\+::string filepath)
+\begin{DoxyCompactList}\small\item\em Process the image according to the user\textquotesingle{}s choice. \end{DoxyCompactList}\item 
+void \hyperlink{class_run_afa7093c55a83956621e6b865f7b7d427}{extract\+Contours} (Channel image)
+\begin{DoxyCompactList}\small\item\em Extract the contours of an image and saves it in a .jpeg file. \end{DoxyCompactList}\item 
+void \hyperlink{class_run_a32a683ef3c55139cc3f62ceab409d2eb}{compute\+F\+FT} (Channel image)
+\begin{DoxyCompactList}\small\item\em Computes the F\+FT of an image and saves the modulus in a .png file. \end{DoxyCompactList}\item 
+void \hyperlink{class_run_a2442d8d1adf860040ddbdbe0280c3a37}{compute\+Histogram} (Channel image)
+\begin{DoxyCompactList}\small\item\em Computes the histogram of an image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_run}{Run} class. 
+
+To run the main program 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_run_a5493b768fdf04b773ab5a2ddcec8d805}\label{class_run_a5493b768fdf04b773ab5a2ddcec8d805}} 
+\index{Run@{Run}!ask\+User@{ask\+User}}
+\index{ask\+User@{ask\+User}!Run@{Run}}
+\subsubsection{\texorpdfstring{ask\+User()}{askUser()}}
+{\footnotesize\ttfamily int Run\+::ask\+User (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Asks the user if he wants to compute an histogram, compute the Fast Fourier Transform or extract contours. 
+
+\begin{DoxyReturn}{Returns}
+1 for histograms, 2 for the extractions, 3 for the F\+FT 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_run_aa5f70a3b468b1fc5eeb06e5300d6fdb2}\label{class_run_aa5f70a3b468b1fc5eeb06e5300d6fdb2}} 
+\index{Run@{Run}!choose\+Image\+Path@{choose\+Image\+Path}}
+\index{choose\+Image\+Path@{choose\+Image\+Path}!Run@{Run}}
+\subsubsection{\texorpdfstring{choose\+Image\+Path()}{chooseImagePath()}}
+{\footnotesize\ttfamily string Run\+::choose\+Image\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Asks the user to choose an image to process. 
+
+\begin{DoxyReturn}{Returns}
+a string, the filepath of the image 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_run_a32a683ef3c55139cc3f62ceab409d2eb}\label{class_run_a32a683ef3c55139cc3f62ceab409d2eb}} 
+\index{Run@{Run}!compute\+F\+FT@{compute\+F\+FT}}
+\index{compute\+F\+FT@{compute\+F\+FT}!Run@{Run}}
+\subsubsection{\texorpdfstring{compute\+F\+F\+T()}{computeFFT()}}
+{\footnotesize\ttfamily void Run\+::compute\+F\+FT (\begin{DoxyParamCaption}\item[{Channel}]{image }\end{DoxyParamCaption})}
+
+
+
+Computes the F\+FT of an image and saves the modulus in a .png file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image,a} & Channel \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_run_a2442d8d1adf860040ddbdbe0280c3a37}\label{class_run_a2442d8d1adf860040ddbdbe0280c3a37}} 
+\index{Run@{Run}!compute\+Histogram@{compute\+Histogram}}
+\index{compute\+Histogram@{compute\+Histogram}!Run@{Run}}
+\subsubsection{\texorpdfstring{compute\+Histogram()}{computeHistogram()}}
+{\footnotesize\ttfamily void Run\+::compute\+Histogram (\begin{DoxyParamCaption}\item[{Channel}]{image }\end{DoxyParamCaption})}
+
+
+
+Computes the histogram of an image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image,a} & Channel \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_run_afa7093c55a83956621e6b865f7b7d427}\label{class_run_afa7093c55a83956621e6b865f7b7d427}} 
+\index{Run@{Run}!extract\+Contours@{extract\+Contours}}
+\index{extract\+Contours@{extract\+Contours}!Run@{Run}}
+\subsubsection{\texorpdfstring{extract\+Contours()}{extractContours()}}
+{\footnotesize\ttfamily void Run\+::extract\+Contours (\begin{DoxyParamCaption}\item[{Channel}]{image }\end{DoxyParamCaption})}
+
+
+
+Extract the contours of an image and saves it in a .jpeg file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image,a} & Channel \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_run_acb7e1319ac1b8d82f932de967d31689d}\label{class_run_acb7e1319ac1b8d82f932de967d31689d}} 
+\index{Run@{Run}!is\+Colored@{is\+Colored}}
+\index{is\+Colored@{is\+Colored}!Run@{Run}}
+\subsubsection{\texorpdfstring{is\+Colored()}{isColored()}}
+{\footnotesize\ttfamily bool Run\+::is\+Colored (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Asks the user if the image is in R\+GB or greyscale (will be processed differently) 
+
+\begin{DoxyReturn}{Returns}
+true if the image is colored, false if not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_run_a791a26dc9f036082e1fae6dbce7d8944}\label{class_run_a791a26dc9f036082e1fae6dbce7d8944}} 
+\index{Run@{Run}!run@{run}}
+\index{run@{run}!Run@{Run}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Run\+::run (\begin{DoxyParamCaption}\item[{int}]{process,  }\item[{bool}]{color,  }\item[{std\+::string}]{filepath }\end{DoxyParamCaption})}
+
+
+
+Process the image according to the user\textquotesingle{}s choice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filepath} & a string, the path of the file \\
+\hline
+{\em color} & a boolean to know if the image is colored \\
+\hline
+{\em process} & the user\textquotesingle{}s choice of functionality \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Sofia/\+Documents/\+E\+P\+F\+L/\+M\+A1/\+Image-\/sound-\/processing/src/Run.\+h\item 
+/\+Users/\+Sofia/\+Documents/\+E\+P\+F\+L/\+M\+A1/\+Image-\/sound-\/processing/src/Run.\+cpp\end{DoxyCompactItemize}

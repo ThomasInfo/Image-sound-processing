@@ -14,8 +14,9 @@
 #include "../libraries/libpng-1.6.37/pnglibconf.h"
 #include "../libraries/libjpeg/jpeglib.h"
 
-//#define cimg_use_png 1
-//#define cimg_use_jpeg 1
+//Comment the defines if you're on Linux
+#define cimg_use_png 1
+#define cimg_use_jpeg 1
 
 #include "../libraries/CImg.h"
 using namespace cimg_library;

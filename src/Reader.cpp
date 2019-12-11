@@ -35,16 +35,19 @@ Channel Reader::loadGSImage(std::string filename) const {
 
 Channel Reader::extractRedChannel (string filename) const {
     CImg<int> image = loadCImg(filename);
+    //Red channel is the first one
     return convertChannel(image.get_channel(0));
 }
 
 Channel Reader::extractBlueChannel (string filename) const {
     CImg<int> image = loadCImg(filename);
+    //Blue channel is the third one
     return convertChannel(image.get_channel(2));
 }
 
 Channel Reader::extractGreenChannel (string filename) const {
     CImg<int> image = loadCImg(filename);
+    //Green channel is the second one
     return convertChannel(image.get_channel(1));
 }
 
@@ -108,6 +111,7 @@ Channel Reader::convertColoredToGS (std::string filename) const {
 
     for (size_t i (0); i < l; ++i) {
         for (size_t j(0); j < c; ++j) {
+            //Greyscale version is the average of the 3 channels
             greyscale [i][j] = (red[i][j]+green[i][j]+blue[i][j])/3;
         }
     }

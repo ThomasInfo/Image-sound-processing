@@ -14,7 +14,7 @@ TEST (HistogramTest, ImageHistogramIsComputed) {
     RGBImage image = r.loadRGBImage("../images/mandrill.png");
 
     Histogram h;
-    Image_Histogram image_histo = h.compute_Image_Histogram(image);
+    ImageHistogram image_histo = h.computeImageHistogram(image);
 
     //Correct red channel size
     EXPECT_EQ(image_histo.size(),256);
@@ -31,7 +31,7 @@ TEST (HistogramTest, GreyscaleChannelHistogramIsComputed) {
     Channel image = r.loadGSImage("../images/lenna.jpeg");
 
     Histogram h;
-    Channel_Histogram channel_histo = h.compute_Channel_Histogram(image);
+    ChannelHistogram channel_histo = h.computeChannelHistogram(image);
 
     //Correct histogram size
     EXPECT_EQ(channel_histo.size(),256);
@@ -46,9 +46,9 @@ TEST (HistogramTest, ColorChannelsHistogramAreComputed) {
     Channel blue = r.extractBlueChannel("../images/mandrill.png");
 
     Histogram h;
-    Channel_Histogram red_histo = h.compute_Channel_Histogram(red);
-    Channel_Histogram green_histo = h.compute_Channel_Histogram(green);
-    Channel_Histogram blue_histo = h.compute_Channel_Histogram(blue);
+    ChannelHistogram red_histo = h.computeChannelHistogram(red);
+    ChannelHistogram green_histo = h.computeChannelHistogram(green);
+    ChannelHistogram blue_histo = h.computeChannelHistogram(blue);
 
     //Correct histogram size
     EXPECT_EQ(red_histo.size(),256);
@@ -66,7 +66,7 @@ TEST (HistogramTest, BlackImageHistogramIsRight) {
     RGBImage image(10, vector<vector<int>>(10, vector<int>(3, 0))); // creating a black RGBImage
 
     Histogram h;
-    Image_Histogram image_histo = h.compute_Image_Histogram(image);
+    ImageHistogram image_histo = h.computeImageHistogram(image);
 
     //Correct count of black pixels
     EXPECT_EQ(image_histo[0][0][0],100); // correct number of black pixels
@@ -89,7 +89,7 @@ TEST (HistogramTest, WhiteImageHistogramIsRight) {
     RGBImage image(10, vector<vector<int>>(10, vector<int>(3, 255))); // creating a white RGBImage
 
     Histogram h;
-    Image_Histogram image_histo = h.compute_Image_Histogram(image);
+    ImageHistogram image_histo = h.computeImageHistogram(image);
 
     //Correct count of black pixels
     EXPECT_EQ(image_histo[255][255][255],100); // correct number of white pixels
@@ -116,10 +116,10 @@ TEST (HistogramTest, ImageHistogramCountsAreRight) {
     Channel blue = r.extractBlueChannel("../images/mandrill.png");
 
     Histogram h;
-    Image_Histogram image_histo = h.compute_Image_Histogram(image);
-    Channel_Histogram red_histo = h.compute_Channel_Histogram(red);
-    Channel_Histogram green_histo = h.compute_Channel_Histogram(green);
-    Channel_Histogram blue_histo = h.compute_Channel_Histogram(blue);
+    ImageHistogram image_histo = h.computeImageHistogram(image);
+    ChannelHistogram red_histo = h.computeChannelHistogram(red);
+    ChannelHistogram green_histo = h.computeChannelHistogram(green);
+    ChannelHistogram blue_histo = h.computeChannelHistogram(blue);
 
     int RGB_pixels_count = 0;
     int red_pixels_count = 0;
@@ -153,10 +153,10 @@ TEST (HistogramTest, ImageHistogramAndChannelHistogramsCorrespond) {
     Channel blue = r.extractBlueChannel("../images/mandrill.png");
 
     Histogram h;
-    Image_Histogram image_histo = h.compute_Image_Histogram(image);
-    Channel_Histogram red_histo = h.compute_Channel_Histogram(red);
-    Channel_Histogram green_histo = h.compute_Channel_Histogram(green);
-    Channel_Histogram blue_histo = h.compute_Channel_Histogram(blue);
+    ImageHistogram image_histo = h.computeImageHistogram(image);
+    ChannelHistogram red_histo = h.computeChannelHistogram(red);
+    ChannelHistogram green_histo = h.computeChannelHistogram(green);
+    ChannelHistogram blue_histo = h.computeChannelHistogram(blue);
 
     //Corresponding count of red pixels according to the intensity
     int red_RGB_pixels_count = 0;

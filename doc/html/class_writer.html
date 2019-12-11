@@ -65,6 +65,11 @@ $(function() {
 <div class="title">Writer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_writer.html" title="Writer class. ">Writer</a> class.  
+ <a href="class_writer.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_writer_8h_source.html">Writer.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -77,13 +82,49 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6f57399b94731301d267ce10a2f52ea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A destructor. <br /></td></tr>
 <tr class="separator:a6f57399b94731301d267ce10a2f52ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5b28e682415d1e47aa9e5d8e43dc217"><td class="memItemLeft" align="right" valign="top">CImg&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_writer.html#ad5b28e682415d1e47aa9e5d8e43dc217">createRGBImage</a> (RGBImage image) const</td></tr>
-<tr class="memdesc:ad5b28e682415d1e47aa9e5d8e43dc217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a colored CImg image from a 3D vector.  <a href="#ad5b28e682415d1e47aa9e5d8e43dc217">More...</a><br /></td></tr>
+<tr class="memdesc:ad5b28e682415d1e47aa9e5d8e43dc217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a colored CImg image from a 3D vector of int.  <a href="#ad5b28e682415d1e47aa9e5d8e43dc217">More...</a><br /></td></tr>
 <tr class="separator:ad5b28e682415d1e47aa9e5d8e43dc217"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6f6af01ef126d3d2b84d2e0e69f3f3e"><td class="memItemLeft" align="right" valign="top">CImg&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_writer.html#ad6f6af01ef126d3d2b84d2e0e69f3f3e">createGSImage</a> (Channel image) const</td></tr>
-<tr class="memdesc:ad6f6af01ef126d3d2b84d2e0e69f3f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a greyscale CImg image from a 2D vector.  <a href="#ad6f6af01ef126d3d2b84d2e0e69f3f3e">More...</a><br /></td></tr>
+<tr class="memdesc:ad6f6af01ef126d3d2b84d2e0e69f3f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a greyscale CImg image from a 2D vector of int.  <a href="#ad6f6af01ef126d3d2b84d2e0e69f3f3e">More...</a><br /></td></tr>
 <tr class="separator:ad6f6af01ef126d3d2b84d2e0e69f3f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9181de5668ce4180a58093816384f17"><td class="memItemLeft" align="right" valign="top">CImg&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_writer.html#af9181de5668ce4180a58093816384f17">createFFTImage</a> (std::vector&lt; std::vector&lt; double &gt;&gt; image) const</td></tr>
+<tr class="memdesc:af9181de5668ce4180a58093816384f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a greyscale CImg image from a 2D vector of double.  <a href="#af9181de5668ce4180a58093816384f17">More...</a><br /></td></tr>
+<tr class="separator:af9181de5668ce4180a58093816384f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a455f6fe279141be85858d17729d42898"><td class="memItemLeft" align="right" valign="top">CImg&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_writer.html#a455f6fe279141be85858d17729d42898">createRGBImage</a> (Channel red, Channel green, Channel blue) const</td></tr>
+<tr class="memdesc:a455f6fe279141be85858d17729d42898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a RGB CImg image from 3 Channels.  <a href="#a455f6fe279141be85858d17729d42898">More...</a><br /></td></tr>
+<tr class="separator:a455f6fe279141be85858d17729d42898"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_writer.html" title="Writer class. ">Writer</a> class. </p>
+<p>To write images in order to visualize results </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af9181de5668ce4180a58093816384f17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9181de5668ce4180a58093816384f17">&#9670;&nbsp;</a></span>createFFTImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CImg&lt; double &gt; Writer::createFFTImage </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; double &gt;&gt;&#160;</td>
+          <td class="paramname"><em>image</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes a greyscale CImg image from a 2D vector of double. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image,a</td><td>vector&lt;vector&lt;double&gt;&gt; </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an image in the CImg&lt;double&gt; format </dd></dl>
+
+</div>
+</div>
 <a id="ad6f6af01ef126d3d2b84d2e0e69f3f3e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad6f6af01ef126d3d2b84d2e0e69f3f3e">&#9670;&nbsp;</a></span>createGSImage()</h2>
 
@@ -100,7 +141,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Writes a greyscale CImg image from a 2D vector. </p>
+<p>Writes a greyscale CImg image from a 2D vector of int. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">image,a</td><td>Channel </td></tr>
@@ -112,7 +153,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="ad5b28e682415d1e47aa9e5d8e43dc217"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5b28e682415d1e47aa9e5d8e43dc217">&#9670;&nbsp;</a></span>createRGBImage()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5b28e682415d1e47aa9e5d8e43dc217">&#9670;&nbsp;</a></span>createRGBImage() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -127,10 +168,55 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Writes a colored CImg image from a 3D vector. </p>
+<p>Writes a colored CImg image from a 3D vector of int. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">image,an</td><td>RGBImage </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an image in the CImg&lt;int&gt; format </dd></dl>
+
+</div>
+</div>
+<a id="a455f6fe279141be85858d17729d42898"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a455f6fe279141be85858d17729d42898">&#9670;&nbsp;</a></span>createRGBImage() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CImg&lt; int &gt; Writer::createRGBImage </td>
+          <td>(</td>
+          <td class="paramtype">Channel&#160;</td>
+          <td class="paramname"><em>red</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Channel&#160;</td>
+          <td class="paramname"><em>green</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Channel&#160;</td>
+          <td class="paramname"><em>blue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes a RGB CImg image from 3 Channels. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">red,the</td><td>red Channel </td></tr>
+    <tr><td class="paramname">green,the</td><td>green Channel </td></tr>
+    <tr><td class="paramname">blue,the</td><td>blue Channel </td></tr>
   </table>
   </dd>
 </dl>

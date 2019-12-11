@@ -22,6 +22,11 @@
 
 using namespace cimg_library;
 
+//! Writer class
+/*!
+ * To write images in order to visualize results
+ */
+
 class Writer {
 
 public:
@@ -32,7 +37,7 @@ public:
     //! A destructor
     ~Writer();
 
-    //! Writes a colored CImg image from a 3D vector
+    //! Writes a colored CImg image from a 3D vector of int
     /*!
      *
      * @param image, an RGBImage
@@ -40,7 +45,7 @@ public:
      */
     CImg <int> createRGBImage (RGBImage image) const;
 
-    //! Writes a greyscale CImg image from a 2D vector
+    //! Writes a greyscale CImg image from a 2D vector of int
     /*!
      *
      * @param image, a Channel
@@ -48,8 +53,22 @@ public:
      */
     CImg <int> createGSImage (Channel image) const;
 
-    CImg <double> createFFTImage (std::vector<std::vector<double>>) const;
+    //! Writes a greyscale CImg image from a 2D vector of double
+    /*!
+     *
+     * @param image, a vector<vector<double>>
+     * @return an image in the CImg<double> format
+     */
+    CImg <double> createFFTImage (std::vector<std::vector<double>> image) const;
 
+    //! Writes a RGB CImg image from 3 Channels
+    /*!
+     *
+     * @param red, the red Channel
+     * @param green, the green Channel
+     * @param blue, the blue Channel
+     * @return an image in the CImg<int> format
+     */
     CImg <int> createRGBImage (Channel red, Channel green, Channel blue) const;
 };
 

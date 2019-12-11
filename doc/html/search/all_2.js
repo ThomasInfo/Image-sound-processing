@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['extractbluechannel',['extractBlueChannel',['../class_reader.html#a46e2de91ea642d5749eaf7c74f0a1381',1,'Reader']]],
-  ['extractgreenchannel',['extractGreenChannel',['../class_reader.html#a8a723ec9b5bebd04143b59e71f68c72a',1,'Reader']]],
-  ['extractredchannel',['extractRedChannel',['../class_reader.html#a4d52dd9aeabc2888b551c9f05c4b6099',1,'Reader']]]
+  ['detectalledges',['detectAllEdges',['../class_contour_extractor.html#a0f85a3798530781e5c20b845df1677eb',1,'ContourExtractor']]],
+  ['detecthorizontaledges',['detectHorizontalEdges',['../class_contour_extractor.html#af99fc045e0745f2b4244ad43822a7a1d',1,'ContourExtractor']]],
+  ['detectverticaledges',['detectVerticalEdges',['../class_contour_extractor.html#a3aafc89132984a7b7042f748439b58fb',1,'ContourExtractor']]]
 ];

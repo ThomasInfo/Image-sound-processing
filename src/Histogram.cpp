@@ -9,10 +9,10 @@ Histogram::Histogram() {}
 
 Histogram::~Histogram () {}
 
-Image_Histogram Histogram::compute_Image_Histogram(RGBImage image) const {
+ImageHistogram Histogram::computeImageHistogram(RGBImage image) const {
     int nb_lines = image.size();
     int nb_columns = image[0].size();
-    Image_Histogram image_histo(256, vector<vector<int>>(256, vector<int>(256)));
+    ImageHistogram image_histo(256, vector<vector<int>>(256, vector<int>(256)));
 
     assert (nb_lines > 0);
     assert (nb_columns > 0);
@@ -30,10 +30,10 @@ Image_Histogram Histogram::compute_Image_Histogram(RGBImage image) const {
 }
 
 
-Channel_Histogram Histogram::compute_Channel_Histogram(Channel channel) const {
+ChannelHistogram Histogram::computeChannelHistogram(Channel channel) const {
     int nb_lines = channel.size();
     int nb_columns = channel[0].size();
-    Channel_Histogram channel_histo(256);
+    ChannelHistogram channel_histo(256);
 
     assert (nb_lines > 0);
     assert (nb_columns > 0);

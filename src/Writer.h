@@ -48,6 +48,9 @@ public:
      */
     CImg <int> createGSImage (Channel image) const;
 
+    CImg <double> createFFTImage (std::vector<std::vector<double>>) const;
+
+    CImg <int> createRGBImage (Channel red, Channel green, Channel blue) const;
 };
 
 

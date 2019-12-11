@@ -2,6 +2,7 @@
 #include "Reader.h"
 #include "ContourExtractor.h"
 #include "Writer.h"
+#include "FFT.h"
 
 using namespace cimg_library;
 using namespace std;
@@ -56,13 +57,19 @@ int main() {
     } while ( (process != 1 and process !=2 and process != 3) or cin.fail());
 
     if (color == 0) {
+        Channel image = r.loadGSImage(filepath);
         if (process == 2) {
-
-            Channel image = r.loadGSImage(filepath);
             Channel filtered = c.detectAllEdges(image);
             CImg<int> cimg = w.createGSImage(filtered);
             cimg.save("../results/contour.jpeg");
-            cout << "Your file has been saved as contour.jpeg in the results folder." << endl;
+            cout << "You can admire the contours of the image in contour.jpeg in the results folder." << endl;
+        } else if (process == 3) {
+            ComplexVector fft = convertImageInComplex(image);
+            FFT(fft);
+            vector<vector<double>> modulus = FFTModulus(fft);
+            CImg<double> cImg = w.createFFTImage(modulus);
+            cImg.save("../results/FFT.png");
+            cout << "Your can see the Fourier Transform of the image in FFT.png in the results folder." << endl;
         }
     } else if (color == 1) {
         if (process == 2) {
@@ -71,6 +78,14 @@ int main() {
             CImg<int> cimg = w.createGSImage(filtered);
             cimg.save("../results/contour.jpeg");
             cout << "Your file has been saved as contour.jpeg in the results folder." << endl;
+        } else if (process == 3) {
+            Channel image = r.convertColoredToGS(filepath);
+            ComplexVector fft = convertImageInComplex(image);
+            FFT(fft);
+            vector<vector<double>> modulus = FFTModulus(fft);
+            CImg<double> cImg = w.createFFTImage(modulus);
+            cImg.save("../results/FFT.png");
+            cout << "Your can see the Fourier Transform of the image in FFT.png in the results folder." << endl;
         }
     }
 

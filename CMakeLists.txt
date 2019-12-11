@@ -9,11 +9,11 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 #include_directories(libraries)
 
 
-add_executable(main src/main.cpp src/Reader.cpp src/Reader.h src/ContourExtractor.cpp src/ContourExtractor.h src/Writer.cpp src/Writer.h)
+add_executable(main src/main.cpp src/Reader.cpp src/Reader.h src/ContourExtractor.cpp src/ContourExtractor.h src/Writer.cpp src/Writer.h src/FFT.h src/FFT.cpp)
 add_executable(readerTest test/readerTest.cpp src/Reader.cpp src/Reader.h)
 add_executable(contourExtractorTest test/contourExtractorTest.cpp src/ContourExtractor.h src/ContourExtractor.cpp src/Reader.cpp src/Reader.h src/Writer.h src/Writer.cpp)
 add_executable(histogramTest test/histogramTest.cpp src/Histogram.cpp src/Histogram.h src/Reader.h src/Reader.cpp)
-add_executable(fftTest test/fftTest.cpp src/FFT.cpp src/FFT.h src/Reader.h src/Reader.cpp)
+add_executable(fftTest test/fftTest.cpp src/FFT.cpp src/FFT.h src/Reader.h src/Reader.cpp src/Writer.cpp src/Writer.h)
 add_executable(writerTest test/writerTest.cpp src/Writer.cpp src/Writer.h src/Reader.h src/Reader.cpp)
 
 target_link_libraries(readerTest gtest gtest_main)

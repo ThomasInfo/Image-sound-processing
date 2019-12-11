@@ -1,5 +1,6 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
+#include <iostream>
 
 #include "FFT.h"
 #include <cassert>
@@ -7,11 +8,11 @@
 using namespace std;
 
 
-FourierTransform DiscreteFourierTransform2D(Channel channel) {
+/*ComplexVector DiscreteFourierTransform2D(Channel channel) {
 
     int nb_lines = channel.size();
     int nb_columns = channel[0].size();
-    FourierTransform FFT2D(nb_lines, vector<Complex>(nb_columns));
+    ComplexVector FFT2D(nb_lines, vector<Complex>(nb_columns));
     Complex i = sqrt(-1);
 
     assert (nb_lines > 0);
@@ -31,10 +32,10 @@ FourierTransform DiscreteFourierTransform2D(Channel channel) {
     }
 
     return FFT2D;
-}
+}*/
 
 
-vector<vector<double>> FastFourierModulus(FourierTransform FFT) {
+vector<vector<double>> FFTModulus(ComplexVector FFT) {
 
     int nb_lines = FFT.size();
     int nb_columns = FFT[0].size();
@@ -51,187 +52,212 @@ vector<vector<double>> FastFourierModulus(FourierTransform FFT) {
     return modulus;
 }
 
+ComplexVector convertImageInComplex(Channel image) {
 
-/*-------------------------------------------------------------------------
-   Performs a 2D FFT inplace given a complex 2D array.
-   The direction dir: 1 for forward, -1 for reverse.
-   The size of the array (nx,ny).
-   Return false if there are memory problems or the dimensions are not powers of 2.
-*/
+    size_t N = image.size();
+    size_t M = image[0].size();
 
-FourierTransform FastFourierTransform2D(Channel channel, int dir)
-{
-    int nx = channel.size();
-    int ny = channel[0].size();
-    int i,j;
-    int m,twopm;
-    double *real,*imag;
+    ComplexVector complexImage (N, vector<Complex> (M));
 
-    FourierTransform FFT2D(nx,vector<Complex>(ny));
-    FourierTransform CannotCompute(0, vector<Complex>(0));
-
-    /* Transform the rows */
-    real = (double *)malloc(nx * sizeof(double));
-    imag = (double *)malloc(nx * sizeof(double));
-    if (real == NULL || imag == NULL)
-        return(CannotCompute);
-    if (!Powerof2(nx,&m,&twopm) || twopm != nx)
-        return(CannotCompute);
-    for (j=0;j<ny;j++) {
-        for (i=0;i<nx;i++) {
-            real[i] = channel[i][j].real;
-            imag[i] = channel[i][j].imag;
-        }
-        FFT(dir,m,real,imag);
-        for (i=0;i<nx;i++) {
-            FFT2D[i][j].real = real[i];
-            FFT2D[i][j].imag = imag[i];
+    for (int i (0); i < N; ++i) {
+        for (int j(0); j < M; ++j) {
+            complexImage[i][j] = image[i][j];
         }
     }
-    free(real);
-    free(imag);
-
-    /* Transform the columns */
-    real = (double *)malloc(ny * sizeof(double));
-    imag = (double *)malloc(ny * sizeof(double));
-    if (real == NULL || imag == NULL)
-        return(CannotCompute);
-    if (!Powerof2(ny,&m,&twopm) || twopm != ny)
-        return(CannotCompute);
-    for (i=0;i<nx;i++) {
-        for (j=0;j<ny;j++) {
-            real[j] = FFT2D[i][j].real;
-            imag[j] = FFT2D[i][j].imag;
-        }
-        FFT(dir,m,real,imag);
-        for (j=0;j<ny;j++) {
-            FFT2D[i][j].real = real[j];
-            FFT2D[i][j].imag = imag[j];
-        }
-    }
-    free(real);
-    free(imag);
-
-    return(FFT2D);
+    return complexImage;
 }
 
-/*-------------------------------------------------------------------------
-   This computes an in-place complex-to-complex FFT
-   x and y are the real and imaginary arrays of 2^m points.
-   dir =  1 gives forward transform
-   dir = -1 gives reverse transform
+Channel convertComplexInInt (ComplexVector complexImage) {
+    size_t N = complexImage.size();
+    size_t M = complexImage[0].size();
 
-     Formula: forward
-                  N-1
-                  ---
-              1   \          - j k 2 pi n / N
-      X(n) = ---   >   x(k) e                    = forward transform
-              N   /                                n=0..N-1
-                  ---
-                  k=0
+    Channel image (N, vector<int> (M));
 
-      Formula: reverse
-                  N-1
-                  ---
-                  \          j k 2 pi n / N
-      X(n) =       >   x(k) e                    = forward transform
-                  /                                n=0..N-1
-                  ---
-                  k=0
-*/
-int FFT(int dir,int m,double *x,double *y)
-{
-    long nn,i,i1,j,k,i2,l,l1,l2;
-    double c1,c2,tx,ty,t1,t2,u1,u2,z;
 
-    /* Calculate the number of points */
-    nn = 1;
-    for (i=0;i<m;i++)
-        nn *= 2;
-
-    /* Do the bit reversal */
-    i2 = nn >> 1;
-    j = 0;
-    for (i=0;i<nn-1;i++) {
-        if (i < j) {
-            tx = x[i];
-            ty = y[i];
-            x[i] = x[j];
-            y[i] = y[j];
-            x[j] = tx;
-            y[j] = ty;
+    for (int i (0); i < N; ++i) {
+        for (int j(0); j < M; ++j) {
+            image[i][j] = complexImage[i][j].real();
         }
-        k = i2;
-        while (k <= j) {
-            j -= k;
-            k >>= 1;
-        }
-        j += k;
     }
+    return image;
+}
+void FFT (ComplexVector& image) {
 
-    /* Compute the FFT */
-    c1 = -1.0;
-    c2 = 0.0;
-    l2 = 1;
-    for (l=0;l<m;l++) {
-        l1 = l2;
-        l2 <<= 1;
-        u1 = 1.0;
-        u2 = 0.0;
-        for (j=0;j<l1;j++) {
-            for (i=j;i<nn;i+=l2) {
-                i1 = i + l1;
-                t1 = u1 * x[i1] - u2 * y[i1];
-                t2 = u1 * y[i1] + u2 * x[i1];
-                x[i1] = x[i] - t1;
-                y[i1] = y[i] - t2;
-                x[i] += t1;
-                y[i] += t2;
+    size_t N = image.size();
+    size_t M = image[0].size();
+    cout << "N = " << N << endl;
+    cout << "M = " << M << endl;
+    if (N <= 1 and M <= 1) return;
+
+    if (N%2 == 1) {
+        cout << "youyou" << endl;
+        ComplexVector temp = image;
+        cout << "log" << pow(2, ceil(log2(N)));
+        N = pow(2, ceil(log2(N)));
+        M = pow(2, ceil(log2(N)));
+        cout << "changed" << N << " " << M << endl;
+        ComplexVector padded (N, vector<Complex> (M, Complex(0,0)));
+
+        image = padded;
+
+        for (int i(0); i < temp.size(); ++i) {
+            for (int j(0); j < temp[0].size(); ++j) {
+                image[i][j] = temp[i][j];
             }
-            z =  u1 * c1 - u2 * c2;
-            u2 = u1 * c2 + u2 * c1;
-            u1 = z;
-        }
-        c2 = sqrt((1.0 - c1) / 2.0);
-        if (dir == 1)
-            c2 = -c2;
-        c1 = sqrt((1.0 + c1) / 2.0);
-    }
-
-    /* Scaling for forward transform */
-    if (dir == 1) {
-        for (i=0;i<nn;i++) {
-            x[i] /= (double)nn;
-            y[i] /= (double)nn;
         }
     }
 
-    return(TRUE);
-}
+    //cout << "N = " << image.size() << endl;
+    //cout << "M = " << image[0].size() << endl;
 
-/*-------------------------------------------------------------------------
-   Calculate the closest but lower power of two of a number
-   twopm = 2**m <= n
-   Return TRUE if 2**m == n
-*/
-int Powerof2(int n,int *m,int *twopm)
-{
-    if (n <= 1) {
-        *m = 0;
-        *twopm = 1;
-        return(FALSE);
+
+
+
+    assert (N>0);
+    assert (M> 0);
+
+    Complex zero (0,0);
+    ComplexVector even_even (N/2+N%2, vector<Complex> (M/2+M%2));
+    ComplexVector odd_odd (N/2,vector<Complex> (M/2));
+    ComplexVector odd_even (N/2+N%2, vector<Complex> (M/2));
+    ComplexVector even_odd (N/2, vector<Complex> (M/2+M%2));
+
+
+    for (int i(0); i < image.size(); ++i) {
+        for (int j(0); j < image[0].size(); ++j) {
+            if (i%2 == 0 and j%2 ==0) {
+                even_even [i/2][j/2] = image[i][j];
+            } else if (i%2 != 0 and j%2 !=0) {
+                odd_odd[i/2][j/2] = image[i][j];
+            } else if (i%2 == 0 and j%2 !=0) {
+                even_odd[i/2][j/2] = image[i][j];
+            } else if (i%2 != 0 and j%2 ==0) {
+                odd_even[i/2][j/2] = image[i][j];
+            }
+        }
     }
 
-    *m = 1;
-    *twopm = 2;
-    do {
-        (*m)++;
-        (*twopm) *= 2;
-    } while (2*(*twopm) <= n);
+    //cout << even_even.size() << endl;
+    //cout << even_even[0].size() << endl;
+    /*for (int i = 0; i < even_even.size(); ++i) {
+        for (int j = 0; j < even_even[0].size(); ++j) {
+            cout << even_even[i][j] << endl;
+        }
+    }*/
 
-    if (*twopm != n)
-        return(FALSE);
-    else
-        return(TRUE);
+    //cout << even_odd.size() << endl;
+    //cout << even_odd[0].size() << endl;
+    /*for (int i = 0; i < even_odd.size(); ++i) {
+        for (int j = 0; j < even_odd[0].size(); ++j) {
+            cout << even_odd[i][j] << endl;
+        }
+    }*/
+
+    //cout << odd_even.size() << endl;
+    //cout << odd_even[0].size();
+    /*for (int i = 0; i < odd_even.size(); ++i) {
+        for (int j = 0; j < odd_even[0].size(); ++j) {
+            cout << odd_even[i][j] << endl;
+        }
+    }*/
+
+    //cout << odd_odd.size() << endl;
+    //cout << odd_odd[0].size();
+    /*for (int i = 0; i < odd_odd.size(); ++i) {
+        for (int j = 0; j < odd_odd[0].size(); ++j) {
+            cout << odd_odd[i][j] << endl;
+        }
+    }*/
+
+
+    //cout << "even-even" << endl;
+    FFT(even_even);
+    //cout << "even-odd" << endl;
+    FFT(even_odd);
+    //cout << "odd-even" << endl;
+    FFT(odd_even);
+    //cout << "odd-odd" << endl;
+    FFT(odd_odd);
+
+    //cout << "base case"<< endl;
+
+
+    double k = 0;
+    double l = 0;
+
+    for (size_t n (0); n < N/2; ++n) {
+
+        for (size_t m(0); m < M/2 ; ++m ) {
+
+            Complex t = Complex(polar(1.0, -2 * M_PI * (k / N + l / M)) * Complex(odd_odd[n][m]));
+            Complex t1 = Complex(polar(1.0, -2 * M_PI * (l / M)) * Complex(even_odd[n][m]));
+            Complex t2 = Complex(polar(1.0, -2 * M_PI * (k / N)) * Complex(odd_even[n][m]));
+
+            /*cout << polar(1.0, -2 * M_PI * (n / N + m / M)) << odd_odd[n][m] << t << endl;
+            cout << polar(1.0, -2 * M_PI * (m / M)) << even_odd[n][m] << t1 << endl;
+            cout << polar(1.0, -2 * M_PI * (n / N)) << odd_even[n][m] << t2 << endl;*/
+
+
+            //cout << n << m << endl;
+
+            //if (N <=2 and M <=2) {
+
+            ++l;
+                if (n%2 == 1) {
+                    image[n][m] = even_even[n][m] - t - t1 + t2;
+                    image[n + N / 2][m + M / 2] = even_even[n][m] - t + t1 - t2;
+                    image[n + N / 2][m] = even_even[n][m] + t - t1 - t2;
+                    image[n][m + M / 2] = even_even[n][m] + t + t1 + t2;
+                } else {
+                    image[n][m] = even_even[n][m] + t + t1 + t2;
+                    image[n + N / 2][m + M / 2] = even_even[n][m] + t - t1 - t2;
+                    image[n + N / 2][m] = even_even[n][m] - t + t1 - t2;
+                    image[n][m + M / 2] = even_even[n][m] - t - t1 + t2;
+                }
+            /*} else {
+
+                image[n][m] = even_even[n][m] - t + t1 - t2;
+                image[n + N / 2][m + M / 2] = even_even[n][m] - t - t1 + t2;
+                image[n + N / 2][m] = even_even[n][m] + t + t1 + t2;
+                image[n][m + M / 2] = even_even[n][m] + t - t1 - t2;
+            }*/
+
+            //cout << "[" << n << "][" << m << "]" << image[n][m] << endl;
+            //cout << "[" << n+N/2 << "][" << m+M/2 << "]" << image[n+N/2][m+M/2] << endl;
+            //cout << "[" << n+N/2 << "][" << m << "]" << image[n+N/2][m] << endl;
+            //cout << "[" << n << "][" << m+M/2 << "]" << image[n][m+M/2] << endl;
+
+
+
+        }
+        ++k;
+    }
+
 }
 
+void IFFT (ComplexVector& fft) {
+    // conjugate the complex numbers
+    ComplexVector temp = fft;
+    for (int i(0); i < fft.size(); ++i) {
+        for (int j(0); j < fft[0].size(); ++j) {
+            fft[i][j] = conj(temp[i][j]);
+        }
+    }
+
+    // forward fft
+    FFT(fft);
+
+    temp = fft;
+    for (int i(0); i < fft.size(); ++i) {
+        for (int j(0); j < fft[0].size(); ++j) {
+            fft[i][j] = conj(temp[i][j]);
+        }
+    }
+
+    // scale the numbers
+    for (int i(0); i < fft.size(); ++i) {
+        for (int j(0); j < fft[0].size(); ++j) {
+            fft[i][j] /= (fft.size()*fft[0].size());
+        }
+    }
+}

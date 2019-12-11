@@ -10,12 +10,22 @@
 #include "Reader.h"
 
 typedef std::complex<double> Complex;
-typedef std::vector<std::vector<Complex>> FourierTransform;
+typedef std::vector<std::vector<Complex>> ComplexVector;
 
-FourierTransform DiscreteFourierTransform2D(Channel channel);
-FourierTransform FastFourierTransform2D(Channel channel, int dir);
-int FFT(int dir,int m,double *x,double *y);
-int Powerof2(int n,int *m,int *twopm);
-std::vector<std::vector<double>> FastFourierModulus(FourierTransform FFT);
+
+std::vector<std::vector<double>> FFTModulus(ComplexVector FFT);
+ComplexVector convertImageInComplex(Channel image);
+Channel convertComplexInInt (ComplexVector);
+void FFT (ComplexVector& image);
+void IFFT (ComplexVector& fft);
+
+
+//ComplexVector DiscreteFourierTransform2D(Channel channel);
+//ComplexVector FastFourierTransform2D(Channel channel, int dir);
+//int FFT(int dir,int m,double *x,double *y);
+//int Powerof2(int n,int *m,int *twopm);
+
+
+
 
 #endif //IMAGE_PROCESSING_FFT_H

@@ -32,7 +32,7 @@ TEST (ContourExtractor, ConvolutionHorizontal) {
     EXPECT_EQ(filtered, test);
 }
 
-TEST (ContourExtractor, ConvolutionAllEdge) {
+TEST (ContourExtractor, ConvolutionAllEdges) {
     ContourExtractor extractor;
     Channel testImage = { {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},};
     Channel filtered = extractor.detectAllEdges(testImage);

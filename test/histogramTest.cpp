@@ -38,7 +38,7 @@ TEST (HistogramTest, GreyscaleChannelHistogramIsComputed) {
 }
 
 
-TEST (HistogramTest, ColorChannelsHistogramAreComputed) {
+TEST (HistogramTest, ColorChannelHistogramsAreComputed) {
 
     Reader r;
     Channel red = r.extractRedChannel("../images/mandrill.png");

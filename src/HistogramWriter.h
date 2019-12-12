@@ -10,7 +10,7 @@
 /*!
  *
  * @param an ImageHistogram image_histo
- * @return write the histogram in a text file
+ * @return writes the histogram in a text file
  */
 int WriteImageHistogram(ImageHistogram image_histo, string const file_name);
 
@@ -18,7 +18,7 @@ int WriteImageHistogram(ImageHistogram image_histo, string const file_name);
 /*!
  *
  * @param a ChannelHistogram channel_histo
- * @return write the histogram in a text file
+ * @return writes the histogram in a text file
  */
 int WriteChannelHistogram(ChannelHistogram channel_histo, string const file_name);
 

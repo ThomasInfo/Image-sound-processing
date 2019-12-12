@@ -17,6 +17,8 @@ typedef std::complex<double> Complex;
 /*! A ComplexVector represents a 2D vector of Complex */
 typedef std::vector<std::vector<Complex>> ComplexVector;
 
+void DiscreteFourierTransform2D(ComplexVector& FFT2D);
+
 //! Calculates the modulus/amplitude of a 2D Fourier Transform
 /*!
  *

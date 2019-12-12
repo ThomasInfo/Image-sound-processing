@@ -7,6 +7,39 @@
 
 using namespace std;
 
+void DiscreteFourierTransform2D(ComplexVector& FFT2D) {
+
+    ComplexVector image = FFT2D;
+    int nb_lines = image.size();
+    int nb_columns = image[0].size();
+
+    assert (nb_lines > 0);
+    assert (nb_columns > 0);
+
+    double k = 0; //for i
+    for ( int i = 0; i < nb_lines; ++i) {
+        double l = 0; //for j
+        for ( int j = 0; j < nb_columns; ++j) {
+            Complex F_i_j(0.0, 0.0); // F[k,l] with F the Discrete Fourier Transform
+            double n = 0; //for x
+            for ( int x = 0; x < nb_lines; ++x) {
+                double m = 0; //for y
+                for ( int y = 0; y < nb_columns; ++y) {
+                    Complex angle = polar(1.0, -2 * M_PI * ( (n*k) / nb_lines + (l*m / nb_columns)));
+                    F_i_j += angle*image[x][y];
+                    ++m;
+                }
+
+                ++n;
+            }
+            //Complex scale (nb_lines*nb_columns, 0);
+            FFT2D[i][j] = F_i_j;
+            ++l;
+        }
+        ++k;
+    }
+
+}
 
 vector<vector<double>> FFTModulus(ComplexVector FFT) {
 
@@ -60,8 +93,8 @@ void FFT (ComplexVector& image) {
     size_t M = image[0].size();
     if (N <= 1 and M <= 1) return;
 
-    if (N%2 == 1) {
-        ComplexVector temp = image;
+    if (N%2 == 1 or M%2 == 1) {
+        /*ComplexVector temp = image;
         N = pow(2, ceil(log2(N)));
         M = pow(2, ceil(log2(N)));
         ComplexVector padded (N, vector<Complex> (M, Complex(0,0)));
@@ -72,7 +105,9 @@ void FFT (ComplexVector& image) {
             for (int j(0); j < temp[0].size(); ++j) {
                 image[i][j] = temp[i][j];
             }
-        }
+        }*/
+        DiscreteFourierTransform2D(image);
+        return;
     }
 
     assert (N>0);

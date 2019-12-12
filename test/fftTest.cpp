@@ -17,6 +17,46 @@ TEST(FFTTest, ConvertInComplexWorks) {
     EXPECT_EQ(fft, converted);
 }
 
+TEST (FFTTest, BlackDFTIsRight) {
+
+    Channel black_image(10, vector<int>(10, 0)); // creating a black greyscale image Channel
+
+    ComplexVector black_FFT = convertImageInComplex(black_image);
+    DiscreteFourierTransform2D(black_FFT);
+    vector<vector<double >> black_FFT_modulus = FFTModulus(black_FFT);
+
+    // correct computation of the Fast Fourier Transform and its modulus
+    Complex zero(0.0, 0.0);
+    for ( int k = 0; k < black_image.size(); k++) {
+        for (int l = 0; l < black_image[0].size(); l++) {
+            EXPECT_EQ(black_FFT[k][l], zero);
+            EXPECT_EQ(black_FFT_modulus[k][l], 0.0);
+        }
+    }
+
+}
+
+
+TEST (FTTTest, DFTIsRight) {
+
+    Channel channel = {{1, 9, 6, 5}, {24, -5, 3, 13}, {8, 0, 1, 7}};
+    ComplexVector solution = {{Complex(72,0), Complex(23,21), Complex(14,0), Complex(23,-21)},
+                              {Complex(-4.5,-16.45), Complex(-9.47,-28.62), Complex(-17.5,-14.72), Complex(-28.53,4.38)},
+                               {Complex(-4.5,16.45), Complex(-28.53,-4.38), Complex(-17.5,14.72), Complex(-9.47,28.62)}};
+
+    ComplexVector  fft = convertImageInComplex(channel);
+    //DiscreteFourierTransform2D(fft);
+    FFT(fft);
+    EXPECT_EQ(channel.size(), solution.size());
+    EXPECT_EQ(channel[0].size(), solution[0].size());
+    for ( int i = 0; i < fft.size(); i++) {
+        for (int j = 0; j < fft.size(); j++) {
+            EXPECT_NEAR(fft[i][j].real(),solution[i][j].real(), 1e-2);
+            EXPECT_NEAR(fft[i][j].imag(),solution[i][j].imag(), 1e-2);
+        }
+    }
+}
+
 TEST (FFTTest, FFTWorksOnZeros) {
 
     Channel testImage = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
@@ -290,7 +330,7 @@ TEST (FFTest, IFFTFruitsColored) {
     cImg.save("../results/reconstructed_fruits_colored.png");
 }
 
-/*TEST (FFTest, FFTMountain) {
+TEST (FFTest, FFTMountain) {
     Reader r;
     Writer w;
     Channel image = r.loadGSImage("../images/mountain.png");
@@ -303,21 +343,62 @@ TEST (FFTest, IFFTFruitsColored) {
     CImg<int> cImg = w.createGSImage(reconstructed);
     cImgMod.save("../results/FFT_mountain.png");
     cImg.save("../results/reconstructed_mountain.png");
-}*/
+}
 
-/*TEST (FFTTest, FFTWorkson3x3) {
+TEST (FFTTest, DFTWorkson3x3) {
 
     Channel testImage = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}};
     ComplexVector fft = convertImageInComplex(testImage);
+    DiscreteFourierTransform2D(fft);
+    ComplexVector solution = {{Complex(36,0), Complex(-4.5,2.598), Complex(-4.5,-2.598)},
+                              {Complex(-13.5,7.794), Complex(0,0),Complex(0,0)},
+                              {Complex(-13.5,-7.794), Complex(0,0), Complex(0,0)}};
+
+    for (int i(0); i < fft.size(); ++i) {
+        for (int j(0); j < fft[0].size(); ++j) {
+            EXPECT_NEAR(fft[i][j].real(),solution[i][j].real(), 1e-3);
+            EXPECT_NEAR(fft[i][j].imag(),solution[i][j].imag(), 1e-3);
+        }
+    }
+
+}
+
+TEST (FFTTest, DFTWorkson2x4) {
+
+    Channel testImage = {{0, 1, 2, 3}, {4, 5, 6,7}};
+    ComplexVector fft = convertImageInComplex(testImage);
+    //DiscreteFourierTransform2D(fft);
     FFT(fft);
-    ComplexVector solution = {{Complex(36,0), Complex(-8,8), Complex(-8,0)},
-                              {Complex(-32,32), Complex(0,0),Complex(0,0)},
-                              {Complex(-32,0), Complex(0,0), Complex(0,0)}};
+    ComplexVector solution = {{Complex(28,0), Complex(-4,4), Complex(-4,0), Complex(-4,-4)},
+                              {Complex(-16,0), Complex(0,0),Complex(0,0), Complex (0,0)} };
 
-    EXPECT_EQ(fft,solution);
+    for (int i(0); i < fft.size(); ++i) {
+        for (int j(0); j < fft[0].size(); ++j) {
+            EXPECT_NEAR(fft[i][j].real(),solution[i][j].real(), 1e-3);
+            EXPECT_NEAR(fft[i][j].imag(),solution[i][j].imag(), 1e-3);
+        }
+    }
 
-}*/
+}
 
+TEST (FFTTest, DFTWorkson3x4) {
+
+    Channel testImage = {{0, 1, 2, 3}, {4, 5, 6,7}, {8, 9, 10, 11}};
+    ComplexVector fft = convertImageInComplex(testImage);
+    //DiscreteFourierTransform2D(fft);
+    FFT(fft);
+    ComplexVector solution = {{Complex(66,0), Complex(-6,6), Complex(-6,0), Complex(-6,-6)},
+                              {Complex(-24,13.856), Complex(0,0),Complex(0,0), Complex (0,0)},
+                              {Complex(-24,-13.856), Complex(0,0),Complex(0,0), Complex (0,0)}};
+
+    for (int i(0); i < fft.size(); ++i) {
+        for (int j(0); j < fft[0].size(); ++j) {
+            EXPECT_NEAR(fft[i][j].real(),solution[i][j].real(), 1e-3);
+            EXPECT_NEAR(fft[i][j].imag(),solution[i][j].imag(), 1e-3);
+        }
+    }
+
+}
 
 
 int main(int argc, char **argv) {

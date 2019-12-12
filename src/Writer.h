@@ -14,8 +14,8 @@
 #include "../libraries/libjpeg/jpeglib.h"
 
 
-#define cimg_use_jpeg 1
-#define cimg_use_png 1
+//#define cimg_use_jpeg 1
+//#define cimg_use_png 1
 
 #include "Reader.h"
 #include "../libraries/CImg.h"

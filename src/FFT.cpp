@@ -87,6 +87,7 @@ Channel convertComplexInInt (ComplexVector complexImage) {
     }
     return image;
 }
+
 void FFT (ComplexVector& image) {
 
     size_t N = image.size();

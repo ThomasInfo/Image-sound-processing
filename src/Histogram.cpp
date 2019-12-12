@@ -1,5 +1,4 @@
 
-#include <iostream>
 #include "Histogram.h"
 #include <cassert>
 
@@ -20,8 +19,8 @@ ImageHistogram Histogram::computeImageHistogram(RGBImage image) const {
     for ( int nx = 0; nx < nb_lines; nx++) {
         for ( int ny = 0; ny < nb_columns; ny++) {
             int r = image[nx][ny][0]; // red intensity
-            int g = image[nx][ny][1]; // blue intensity
-            int b = image[nx][ny][2]; // green intensity
+            int g = image[nx][ny][1]; // green intensity
+            int b = image[nx][ny][2]; // blue intensity
             image_histo[r][g][b]++;
         }
     }

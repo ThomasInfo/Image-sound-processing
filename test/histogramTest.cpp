@@ -127,7 +127,7 @@ TEST (HistogramTest, ImageHistogramCountsAreRight) {
     int blue_pixels_count = 0;
 
     //Correct count of pixels
-    for ( int nred = 0; nred < 256; nred++) {
+    for (int nred = 0; nred < 256; nred++) {
         red_pixels_count += red_histo[nred];
         green_pixels_count += green_histo[nred];
         blue_pixels_count += blue_histo[nred];
@@ -139,7 +139,9 @@ TEST (HistogramTest, ImageHistogramCountsAreRight) {
     }
 
     EXPECT_EQ(RGB_pixels_count,480 * 480);
-    EXPECT_EQ(red_pixels_count + green_pixels_count + blue_pixels_count,480 * 480);
+    EXPECT_EQ(red_pixels_count,480 * 480);
+    EXPECT_EQ(green_pixels_count,480 * 480);
+    EXPECT_EQ(blue_pixels_count,480 * 480);
 
 }
 
@@ -176,7 +178,7 @@ TEST (HistogramTest, ImageHistogramAndChannelHistogramsCorrespond) {
         green_RGB_pixels_count = 0;
         for (int nred = 0; nred < 256; nred++) {
             for (int nblue = 0; nblue < 256; nblue++) {
-                green_RGB_pixels_count += image_histo[nred][nblue][ngreen];
+                green_RGB_pixels_count += image_histo[nred][ngreen][nblue];
             }
         }
         EXPECT_EQ(green_RGB_pixels_count, green_histo[ngreen]);
@@ -188,7 +190,7 @@ TEST (HistogramTest, ImageHistogramAndChannelHistogramsCorrespond) {
         blue_RGB_pixels_count = 0;
         for (int nred = 0; nred < 256; nred++) {
             for (int ngreen = 0; ngreen < 256; ngreen++) {
-                blue_RGB_pixels_count += image_histo[nred][nblue][ngreen];
+                blue_RGB_pixels_count += image_histo[nred][ngreen][nblue];
             }
         }
         EXPECT_EQ(blue_RGB_pixels_count, blue_histo[nblue]);

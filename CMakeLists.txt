@@ -9,7 +9,8 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 #include_directories(libraries)
 
 
-add_executable(main src/main.cpp src/Run.cpp src/Run.h src/Reader.cpp src/Reader.h src/ContourExtractor.cpp src/ContourExtractor.h src/Writer.cpp src/Writer.h src/FFT.h src/FFT.cpp src/Histogram.h src/Histogram.cpp)
+add_executable(main src/main.cpp src/Run.cpp src/Run.h src/Reader.cpp src/Reader.h src/ContourExtractor.cpp src/ContourExtractor.h src/Writer.cpp src/Writer.h src/FFT.h src/FFT.cpp src/Histogram.h src/Histogram.cpp src/HistogramWriter.h src/HistogramWriter.cpp)
+add_executable(WriteHistogram histograms/WriteHistogram.cpp src/HistogramWriter.cpp src/HistogramWriter.h src/Reader.cpp src/Reader.h src/Histogram.h src/Histogram.cpp)
 add_executable(readerTest test/readerTest.cpp src/Reader.cpp src/Reader.h)
 add_executable(contourExtractorTest test/contourExtractorTest.cpp src/ContourExtractor.h src/ContourExtractor.cpp src/Reader.cpp src/Reader.h src/Writer.h src/Writer.cpp)
 add_executable(histogramTest test/histogramTest.cpp src/Histogram.cpp src/Histogram.h src/Reader.h src/Reader.cpp)

@@ -1,5 +1,4 @@
 
-#include <iostream>
 #include "Histogram.h"
 #include <cassert>
 

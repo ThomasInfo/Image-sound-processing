@@ -14,13 +14,15 @@ make
 ~~~~
 
 ## Generate the documentation
-
+~~~~shell
+doxygen Doxygen
+~~~~
 ## Run the tests
 In the build folder:
 ~~~~shell
 cmake ..
 make
-./readerTest
+./name_of_test
 ~~~~
 
 

@@ -5,10 +5,13 @@
 #ifndef IMAGE_PROCESSING_RUN_H
 #define IMAGE_PROCESSING_RUN_H
 
+#include <string>
+
 #include "Reader.h"
 #include "Writer.h"
 #include "ContourExtractor.h"
 #include "Histogram.h"
+#include "HistogramWriter.h"
 #include "FFT.h"
 
 //! Run class
@@ -72,14 +75,14 @@ public:
      *
      * @param image, a Channel
      */
-    void computeFFT (Channel image);
+    void computeFFT(Channel image);
 
     //! Computes the histogram of an image
     /*!
      *
-     * @param image, a Channel
+     * @param image, a Channel, file_name the name of the text file to store the ChannelHistogram
      */
-    void computeHistogram(Channel image);
+    void computeHistogram(Channel image, string file_name);
 
 };
 

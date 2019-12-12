@@ -100,6 +100,8 @@ void Run::computeFFT (Channel image) {
     cout << "Modulus saved as FFT.png in the results folder." << endl;
 }
 
-void Run::computeHistogram(Channel image) {
-
+void Run::computeHistogram(Channel image, string file_name) {
+    ChannelHistogram channel_histo = h.computeChannelHistogram(image);
+    WriteChannelHistogram(channel_histo, file_name);
+    cout << "Histogram saved as text file in " << file_name << endl;
 }

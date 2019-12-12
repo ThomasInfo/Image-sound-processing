@@ -43,15 +43,30 @@ def check_histograms(file_name): # Check if the histograms exists and has the go
         return (nb_intensity==256)
 
 
+### Greyscale
+lenna = read("lenna.txt")
+plt.plot(lenna, 'k', label='Greyscale histogram')
+plt.xlabel('Color intensity')
+plt.ylabel('Number of pixels')
+plt.legend()
+plt.title('Continuous greyscale histogram of Lenna image')
+plt.savefig('lenna_histogram')
+plt.close()
 
-#lenna = read("lenna.txt")
-#plt.plot(lenna)
 
+### Colored
 red_mandrill = read("red_mandrill.txt")
-plt.plot(red_mandrill, 'r')
+plt.plot(red_mandrill, 'r', label='Red histogram')
 
 green_mandrill = read("green_mandrill.txt")
-plt.plot(green_mandrill, 'g')
+plt.plot(green_mandrill, 'g', label='Green histogram')
 
 blue_mandrill = read("blue_mandrill.txt")
-plt.plot(blue_mandrill, 'b')
+plt.plot(blue_mandrill, 'b', label='Blue histogram')
+
+plt.xlabel('Color intensity')
+plt.ylabel('Number of pixels')
+plt.legend()
+plt.title('Continuous color histograms of the mandrill image')
+plt.savefig('mandrill_histogram')
+plt.close()

@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 
 
 def read(file_name):
-
     if check_histograms(file_name):
         the_intensities = np.array([0 for i in range(256)])
         f = open(file_name,"r")
@@ -43,30 +42,28 @@ def check_histograms(file_name): # Check if the histograms exists and has the go
         return (nb_intensity==256)
 
 
-### Greyscale
-lenna = read("lenna.txt")
-plt.plot(lenna, 'k', label='Greyscale histogram')
-plt.xlabel('Color intensity')
-plt.ylabel('Number of pixels')
-plt.legend()
-plt.title('Continuous greyscale histogram of Lenna image')
-plt.savefig('lenna_histogram')
-plt.close()
 
 
-### Colored
-red_mandrill = read("red_mandrill.txt")
-plt.plot(red_mandrill, 'r', label='Red histogram')
-
-green_mandrill = read("green_mandrill.txt")
-plt.plot(green_mandrill, 'g', label='Green histogram')
-
-blue_mandrill = read("blue_mandrill.txt")
-plt.plot(blue_mandrill, 'b', label='Blue histogram')
-
-plt.xlabel('Color intensity')
-plt.ylabel('Number of pixels')
-plt.legend()
-plt.title('Continuous color histograms of the mandrill image')
-plt.savefig('mandrill_histogram')
-plt.close()
+def plot_histogram(file_name, color, title_name): ## color is the character defining the color of the Channel
+    histo = read(file_name)
+    
+    if color == 'k': ## black
+        lab = 'Grayscale histogram'
+    elif color == 'r':
+        lab = 'Red histogram'
+    elif color == 'g':
+        lab = 'Green histogram'
+    elif color == 'b':
+        lab = 'Blue histogram'
+    else:
+        raise NameError('Color should be either "k", "r", "g", or "b".')
+    
+    plt.plot(histo, color, label = lab)
+    plt.xlabel('Color intensity')
+    plt.ylabel('Number of pixels')
+    plt.legend()
+    plt.title(title_name)
+    
+    save_name = file_name[:-4] + '_histogram'
+    plt.savefig(save_name)
+    plt.close()

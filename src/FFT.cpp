@@ -32,7 +32,6 @@ void DiscreteFourierTransform2D(ComplexVector& FFT2D) {
 
                 ++n;
             }
-            //Complex scale (nb_lines*nb_columns, 0);
             FFT2D[i][j] = F_i_j;
             ++l;
         }
@@ -95,18 +94,7 @@ void FFT (ComplexVector& image) {
     if (N <= 1 and M <= 1) return;
 
     if (N%2 == 1 or M%2 == 1) {
-        /*ComplexVector temp = image;
-        N = pow(2, ceil(log2(N)));
-        M = pow(2, ceil(log2(N)));
-        ComplexVector padded (N, vector<Complex> (M, Complex(0,0)));
-
-        image = padded;
-
-        for (int i(0); i < temp.size(); ++i) {
-            for (int j(0); j < temp[0].size(); ++j) {
-                image[i][j] = temp[i][j];
-            }
-        }*/
+        //Naive algorithm is computed when the dimensions aren't even
         DiscreteFourierTransform2D(image);
         return;
     }

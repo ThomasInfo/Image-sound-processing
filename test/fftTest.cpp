@@ -326,7 +326,6 @@ TEST (FFTest, IFFTFruitsColored) {
     Channel reconstructedG = convertComplexInInt(fftGreen);
     Channel reconstructedB = convertComplexInInt(fftBlue);
     CImg<int> cImg = w.createRGBImage(reconstructedR,reconstructedG, reconstructedB);
-    //CImg<double> cImg = w.createFFTImage(modulus);
     cImg.save("../results/reconstructed_fruits_colored.png");
 }
 

@@ -43,7 +43,7 @@ ComplexVector convertImageInComplex(Channel image);
  */
 Channel convertComplexInInt (ComplexVector image);
 
-//! Computes the FFT of an image in-place using the Cooley-Tukey algorithm
+//! Computes the FFT of an image in-place using the Cooley-Tukey algorithm if the dimensions are even, if not uses the naive algorithm
 /*!
  *
  * @param image a ComplexVector&
@@ -57,7 +57,7 @@ void FFT (ComplexVector& image);
  */
 void IFFT (ComplexVector& fft);
 
-//! Computes the conjugate of a ComplexVector in-place
+//! Computes the conjugate of a ComplexVector
 /*!
  *
  * @param fft a ComplexVector&

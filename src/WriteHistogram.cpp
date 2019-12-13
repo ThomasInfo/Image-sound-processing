@@ -3,8 +3,10 @@
 
 using namespace std;
 
-#include "../src/Reader.h"
-#include "../src/HistogramWriter.h"
+#include "Reader.h"
+#include "HistogramWriter.h"
+
+//File to write histograms for the example of mandrill.png and lenna.jpeg
 
 int main() {
 

@@ -6,7 +6,7 @@ using namespace std;
 
 Histogram::Histogram() {}
 
-Histogram::~Histogram () {}
+Histogram::~Histogram() {}
 
 ImageHistogram Histogram::computeImageHistogram(RGBImage image) const {
     int nb_lines = image.size();

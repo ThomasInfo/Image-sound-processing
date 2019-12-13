@@ -1,6 +1,5 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
-#include <iostream>
 
 #include "FFT.h"
 #include <cassert>

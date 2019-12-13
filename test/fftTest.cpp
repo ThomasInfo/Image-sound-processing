@@ -44,7 +44,7 @@ TEST (FTTTest, DFTIsRight) {
                               {Complex(-4.5,-16.45), Complex(-9.47,-28.62), Complex(-17.5,-14.72), Complex(-28.53,4.38)},
                                {Complex(-4.5,16.45), Complex(-28.53,-4.38), Complex(-17.5,14.72), Complex(-9.47,28.62)}};
 
-    ComplexVector  fft = convertImageInComplex(channel);
+    ComplexVector fft = convertImageInComplex(channel);
     //DiscreteFourierTransform2D(fft);
     FFT(fft);
     EXPECT_EQ(channel.size(), solution.size());
@@ -228,7 +228,7 @@ TEST (FFTTest, FFTWorksOn8x8Vector) {
 
 }
 
-TEST (FFTest, FFTLenna) {
+TEST (FFTTest, FFTLenna) {
     Reader r;
     Writer w;
     Channel image = r.loadGSImage("../images/lenna.jpeg");
@@ -240,7 +240,7 @@ TEST (FFTest, FFTLenna) {
     cImg.save("../results/FFT_lenna.png");
 }
 
-TEST (FFTest, IFFTLenna) {
+TEST (FFTTest, IFFTLenna) {
     Reader r;
     Writer w;
     Channel image = r.loadGSImage("../images/lenna.jpeg");
@@ -254,7 +254,7 @@ TEST (FFTest, IFFTLenna) {
 }
 
 
-TEST (FFTest, FFTMandrill) {
+TEST (FFTTest, FFTMandrill) {
     Reader r;
     Writer w;
     Channel image = r.convertColoredToGS("../images/mandrill.png");
@@ -265,7 +265,7 @@ TEST (FFTest, FFTMandrill) {
     cImg.save("../results/FFT_mandrill.png");
 }
 
-TEST (FFTest, IFFTMandrill) {
+TEST (FFTTest, IFFTMandrill) {
     Reader r;
     Writer w;
 
@@ -290,7 +290,7 @@ TEST (FFTest, IFFTMandrill) {
     cImg.save("../results/reconstructed_mandrill.png");
 }
 
-TEST (FFTest, FFTFruits) {
+TEST (FFTTest, FFTFruits) {
     Reader r;
     Writer w;
     Channel image = r.loadGSImage("../images/fruits.jpg");
@@ -305,7 +305,7 @@ TEST (FFTest, FFTFruits) {
     cImg.save("../results/reconstructed_fruits.png");
 }
 
-TEST (FFTest, IFFTFruitsColored) {
+TEST (FFTTest, IFFTFruitsColored) {
     Reader r;
     Writer w;
 
@@ -330,7 +330,7 @@ TEST (FFTest, IFFTFruitsColored) {
     cImg.save("../results/reconstructed_fruits_colored.png");
 }
 
-TEST (FFTest, FFTMountain) {
+TEST (FFTTest, FFTMountain) {
     Reader r;
     Writer w;
     Channel image = r.loadGSImage("../images/mountain.png");

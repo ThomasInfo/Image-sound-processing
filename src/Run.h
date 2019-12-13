@@ -70,19 +70,27 @@ public:
      */
     void extractContours(Channel image);
 
-    //! Computes the FFT of an image and saves the modulus in a .png file
+    //! Computes the FFT of an greyscale image and its inverse and saves the modulus of the FFT and the reconstruction in image files
     /*!
      *
      * @param image, a Channel
      */
-    void computeFFT(Channel image);
+    void computeFFTandIFFTGS(Channel image);
+
+    //! Computes the FFT of each channel of a RGB image, reconstructs the image and saves the modulus of the FFTs and the reconstruction in image files
+    /*!
+     *
+     * @param image, a Channel
+     */
+    void computeFFTandIFFTColor(std::string filepath);
 
     //! Computes the histogram of an image
     /*!
      *
-     * @param image, a Channel, file_name the name of the text file to store the ChannelHistogram
+     * @param image, a Channel
+     * @param filepath, the name of the text file to store the ChannelHistogram
      */
-    void computeHistogram(Channel image, string file_name);
+    void computeHistogram(Channel image, std::string filepath);
 
 };
 

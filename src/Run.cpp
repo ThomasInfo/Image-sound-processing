@@ -58,7 +58,7 @@ int Run::askUser() {
     do {
         cout << "Enter 1 to compute the intensity histograms,"
                 " 2 to extract the contours of the image, "
-                "3 to compute the Fourier Transform of the image." << endl;
+                "3 to compute the Fourier Transform of the image and its inverse." << endl;
 
         cin >> process;
     } while ( (process != 1 and process !=2 and process != 3) or cin.fail());
@@ -69,18 +69,39 @@ int Run::askUser() {
 void Run::run(int process, bool color, string filepath) {
 
     Channel image;
+    Channel red;
+    Channel blue;
+    Channel green;
+    RGBImage rgbImage;
+
     if (!color) {
         image = r.loadGSImage(filepath);
     } else {
         image = r.convertColoredToGS(filepath);
+        red = r.extractRedChannel(filepath);
+        green = r.extractGreenChannel(filepath);
+        blue = r.extractBlueChannel(filepath);
+        rgbImage = r.loadRGBImage(filepath);
     }
 
     if (process==2 ) {
         extractContours(image);
     } else if (process == 3) {
-        computeFFT(image);
+        if (!color) {
+            computeFFTandIFFTGS(image);
+        } else {
+            computeFFTandIFFTColor(filepath);
+        }
+
     } else if (process == 1){
-        computeHistogram(image);
+        if (!color) {
+            computeHistogram(image, "../histograms/histogram.txt");
+        } else {
+            computeHistogram(red, "../histograms/red_histogram.txt");
+            computeHistogram(blue, "../histograms/blue_histogram.txt");
+            computeHistogram(green, "../histograms/green_histogram.txt");
+        }
+
     }
 
 }
@@ -91,17 +112,52 @@ void Run::extractContours(Channel image) {
     cout << "Saved as contour.jpeg in the results folder." << endl;
 }
 
-void Run::computeFFT (Channel image) {
+void Run::computeFFTandIFFTGS (Channel image) {
     ComplexVector fft = convertImageInComplex(image);
     FFT(fft);
     vector<vector<double>> modulus = FFTModulus(fft);
-    CImg<double> cImg = w.createFFTImage(modulus);
-    cImg.save("../results/FFT.png");
-    cout << "Modulus saved as FFT.png in the results folder." << endl;
+    CImg<double> cImgMod = w.createFFTImage(modulus);
+    IFFT(fft);
+    Channel reconstructed = convertComplexInInt(fft);
+    CImg<int> cImg = w.createGSImage(reconstructed);
+    cImgMod.save("../results/FFT.png");
+    cImg.save("../results/reconstructed.png");
+    cout << "Modulus of FFT saved as FFT.png in the results folder." << endl;
+    cout << "Inverse FFT saved as reconstructed.png in the results folder" << endl;
 }
 
-void Run::computeHistogram(Channel image, string file_name) {
+void Run::computeFFTandIFFTColor(std::string filepath) {
+    Channel red = r.extractRedChannel(filepath);
+    Channel green = r.extractGreenChannel(filepath);
+    Channel blue = r.extractBlueChannel(filepath);
+    ComplexVector fftRed = convertImageInComplex(red);
+    ComplexVector fftGreen = convertImageInComplex(green);
+    ComplexVector fftBlue = convertImageInComplex(blue);
+    FFT(fftRed);
+    FFT(fftGreen);
+    FFT(fftBlue);
+    vector<vector<double>> modulusRed = FFTModulus(fftRed);
+    vector<vector<double>> modulusGreen = FFTModulus(fftGreen);
+    vector<vector<double>> modulusBlue = FFTModulus(fftBlue);
+    CImg<double> cImgModR = w.createFFTImage(modulusRed);
+    CImg<double> cImgModG = w.createFFTImage(modulusGreen);
+    CImg<double> cImgModB = w.createFFTImage(modulusBlue);
+    cImgModR.save("../results/FFT_red.png");
+    cImgModG.save("../results/FFT_green.png");
+    cImgModB.save("../results/FFT_blue.png");
+    IFFT(fftRed);
+    IFFT(fftGreen);
+    IFFT(fftBlue);
+    Channel reconstructedR = convertComplexInInt(fftRed);
+    Channel reconstructedG = convertComplexInInt(fftGreen);
+    Channel reconstructedB = convertComplexInInt(fftBlue);
+    CImg<int> cImg = w.createRGBImage(reconstructedR,reconstructedG, reconstructedB);
+    cImg.save("../results/reconstructed_colored.png");
+    cout << "Reconstruction saved as reconstructed_colored.png in the results folder." << endl;
+}
+
+void Run::computeHistogram(Channel image, string filepath) {
     ChannelHistogram channel_histo = h.computeChannelHistogram(image);
-    WriteChannelHistogram(channel_histo, file_name);
-    cout << "Histogram saved as text file in " << file_name << endl;
+    WriteChannelHistogram(channel_histo, filepath);
+    cout << "Histogram saved as" << filepath << endl;
 }

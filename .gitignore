@@ -59,4 +59,4 @@ test/test_runner
 CMakeDoxyfile.in
 CMakeDoxyfile.tpl.bak
 CMakeDoxygenDefaults.cmake
-
+Doxyfile

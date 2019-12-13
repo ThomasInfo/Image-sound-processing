@@ -1,26 +1,24 @@
 
-#ifndef IMAGE_SOUND_PROCESSING_HISTROGRAMWRITER_H
+#ifndef IMAGE_SOUND_PROCESSING_HISTOGRAMWRITER_H
 #define IMAGE_SOUND_PROCESSING_HISTOGRAMWRITER_H
 
 #include <string>
 
 #include "Histogram.h"
 
-//!
+//! Writes a 3D histogram of an RGBImage in a text file
 /*!
  *
- * @param an ImageHistogram image_histo
- * @return writes the histogram in a text file
+ * @param an ImageHistogram imageHisto
  */
-int WriteImageHistogram(ImageHistogram image_histo, string const file_name);
+void WriteImageHistogram(ImageHistogram imageHisto, std::string filename);
 
-//!
+//! Writes the 2D histogram of a Channel in a text file
 /*!
  *
- * @param a ChannelHistogram channel_histo
- * @return writes the histogram in a text file
+ * @param a ChannelHistogram channelHisto
  */
-int WriteChannelHistogram(ChannelHistogram channel_histo, string const file_name);
+void WriteChannelHistogram(ChannelHistogram channelHisto, std::string filename);
 
 
 #endif //IMAGE_PROCESSING_HISTOGRAMWRITER_H
